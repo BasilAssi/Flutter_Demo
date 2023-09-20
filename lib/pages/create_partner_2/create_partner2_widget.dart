@@ -124,8 +124,9 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                 ),
                                 FutureBuilder<ApiCallResponse>(
                                   future: AddressCall.call(
-                                    randomNumber: random_data.randomInteger(
-                                        0, 9999999999999),
+                                    randomNumber:
+                                        random_data.randomInteger(0, 1000),
+                                    address: FFAppState().address,
                                   ),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
