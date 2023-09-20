@@ -147,7 +147,7 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                         decoration: BoxDecoration(),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 0.0, 0.0, 0.0),
+                              10.0, 10.0, 0.0, 0.0),
                           child: FlutterFlowChoiceChips(
                             options: [
                               ChipData('smartphones', Icons.phone_android),
