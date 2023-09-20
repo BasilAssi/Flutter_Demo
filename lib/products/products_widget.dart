@@ -323,46 +323,23 @@ class _ProductsWidgetState extends State<ProductsWidget>
                                   ),
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(25.0),
-                                        child: Image.network(
-                                          getJsonField(
-                                            eachProductItem,
-                                            r'''$.images[0]''',
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 0.0, 20.0, 0.0),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(40.0),
+                                          child: Image.network(
+                                            getJsonField(
+                                              eachProductItem,
+                                              r'''$.images[0]''',
+                                            ),
+                                            width: 60.0,
+                                            height: 60.0,
+                                            fit: BoxFit.cover,
                                           ),
-                                          width: 60.0,
-                                          height: 60.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(25.0),
-                                        child: Image.network(
-                                          getJsonField(
-                                            eachProductItem,
-                                            r'''$.images[1]''',
-                                          ),
-                                          width: 60.0,
-                                          height: 60.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(25.0),
-                                        child: Image.network(
-                                          getJsonField(
-                                            eachProductItem,
-                                            r'''$.images[2]''',
-                                          ),
-                                          width: 60.0,
-                                          height: 60.0,
-                                          fit: BoxFit.cover,
                                         ),
                                       ),
                                       Row(
