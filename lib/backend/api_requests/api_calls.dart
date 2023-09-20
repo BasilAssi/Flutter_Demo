@@ -178,6 +178,17 @@ class AddressCall {
       cache: false,
     );
   }
+
+  static dynamic namesOfAddress(dynamic response) => getJsonField(
+        response,
+        r'''$.records[:].name''',
+        true,
+      );
+  static dynamic encodedidForAddress(dynamic response) => getJsonField(
+        response,
+        r'''$.records[:].encodedId''',
+        true,
+      );
 }
 
 class ApiPagingParams {

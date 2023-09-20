@@ -151,12 +151,13 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                       controller:
                                           _model.dropDownValueController ??=
                                               FormFieldController<String>(null),
-                                      options: (getJsonField(
+                                      options: (AddressCall.namesOfAddress(
                                         dropDownAddressResponse.jsonBody,
-                                        r'''$.records[:].name''',
                                       ) as List)
                                           .map<String>((s) => s.toString())
-                                          .toList()!,
+                                          .toList()!
+                                          .map((e) => e.toString())
+                                          .toList(),
                                       onChanged: (val) async {
                                         setState(
                                             () => _model.dropDownValue = val);
