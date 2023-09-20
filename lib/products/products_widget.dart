@@ -273,7 +273,7 @@ class _ProductsWidgetState extends State<ProductsWidget>
                                                       Text(
                                                         getJsonField(
                                                           eachProductItem,
-                                                          r'''$''',
+                                                          r'''$.rating''',
                                                         ).toString(),
                                                         style:
                                                             FlutterFlowTheme.of(
