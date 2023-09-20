@@ -153,7 +153,7 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                               FormFieldController<String>(null),
                                       options: (getJsonField(
                                         dropDownAddressResponse.jsonBody,
-                                        r'''$.record[:].name''',
+                                        r'''$.records[:].name''',
                                       ) as List)
                                           .map<String>((s) => s.toString())
                                           .toList()!,
