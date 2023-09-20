@@ -45,7 +45,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : ProductsWidget(),
+          : ProductsListingWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -60,7 +60,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : ProductsWidget(),
+              : ProductsListingWidget(),
         ),
         FFRoute(
           name: 'HomePage',
