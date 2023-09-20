@@ -38,14 +38,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       errorBuilder: (context, state) => appStateNotifier.showSplashImage
           ? Builder(
               builder: (context) => Container(
-                color: Color(0x4D294944),
+                color: Color(0xFF181818),
                 child: Image.asset(
                   'assets/images/Screenshot_2023-03-31_173136.png',
                   fit: BoxFit.contain,
                 ),
               ),
             )
-          : Login1Widget(),
+          : ProductsWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -53,14 +53,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, _) => appStateNotifier.showSplashImage
               ? Builder(
                   builder: (context) => Container(
-                    color: Color(0x4D294944),
+                    color: Color(0xFF181818),
                     child: Image.asset(
                       'assets/images/Screenshot_2023-03-31_173136.png',
                       fit: BoxFit.contain,
                     ),
                   ),
                 )
-              : Login1Widget(),
+              : ProductsWidget(),
         ),
         FFRoute(
           name: 'HomePage',
