@@ -128,6 +128,30 @@ class ProductsCall {
       );
 }
 
+class ProductListingCall {
+  static Future<ApiCallResponse> call({
+    String? cat = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'ProductListing',
+      apiUrl: 'https://dummyjson.com/products/category/${cat}',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  static dynamic productsCat(dynamic response) => getJsonField(
+        response,
+        r'''$.products''',
+        true,
+      );
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

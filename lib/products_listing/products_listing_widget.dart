@@ -10,29 +10,30 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
-import 'products_model.dart';
-export 'products_model.dart';
+import 'products_listing_model.dart';
+export 'products_listing_model.dart';
 
-class ProductsWidget extends StatefulWidget {
-  const ProductsWidget({Key? key}) : super(key: key);
+class ProductsListingWidget extends StatefulWidget {
+  const ProductsListingWidget({Key? key}) : super(key: key);
 
   @override
-  _ProductsWidgetState createState() => _ProductsWidgetState();
+  _ProductsListingWidgetState createState() => _ProductsListingWidgetState();
 }
 
-class _ProductsWidgetState extends State<ProductsWidget>
+class _ProductsListingWidgetState extends State<ProductsListingWidget>
     with TickerProviderStateMixin {
-  late ProductsModel _model;
+  late ProductsListingModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProductsModel());
+    _model = createModel(context, () => ProductsListingModel());
 
     _model.textController ??= TextEditingController();
   }
@@ -137,59 +138,75 @@ class _ProductsWidgetState extends State<ProductsWidget>
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
-                    child: Text(
-                      'Patients matching search',
-                      style: FlutterFlowTheme.of(context).labelMedium,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(4.0, 12.0, 16.0, 0.0),
-                    child: Text(
-                      '24',
-                      style: FlutterFlowTheme.of(context).bodyMedium,
-                    ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: 371.0,
+                        height: 100.0,
+                        decoration: BoxDecoration(),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 0.0, 0.0),
+                          child: FlutterFlowChoiceChips(
+                            options: [
+                              ChipData('smartphones', Icons.phone_android),
+                              ChipData('laptops', Icons.laptop),
+                              ChipData(
+                                  'fragrances', Icons.twenty_two_mp_rounded),
+                              ChipData('skincare', FontAwesomeIcons.sign),
+                              ChipData(
+                                  'groceries', Icons.shopping_cart_outlined)
+                            ],
+                            onChanged: (val) => setState(
+                                () => _model.choiceChipsValue = val?.first),
+                            selectedChipStyle: ChipStyle(
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).secondary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                              iconColor:
+                                  FlutterFlowTheme.of(context).primaryText,
+                              iconSize: 18.0,
+                              elevation: 4.0,
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            unselectedChipStyle: ChipStyle(
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                  ),
+                              iconColor:
+                                  FlutterFlowTheme.of(context).secondaryText,
+                              iconSize: 18.0,
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            chipSpacing: 12.0,
+                            rowSpacing: 12.0,
+                            multiselect: false,
+                            alignment: WrapAlignment.start,
+                            controller: _model.choiceChipsValueController ??=
+                                FormFieldController<List<String>>(
+                              [],
+                            ),
+                            wrapped: true,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-              FlutterFlowChoiceChips(
-                options: [ChipData('Option 1', Icons.train_outlined)],
-                onChanged: (val) =>
-                    setState(() => _model.choiceChipsValue = val?.first),
-                selectedChipStyle: ChipStyle(
-                  backgroundColor: FlutterFlowTheme.of(context).secondary,
-                  textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                      ),
-                  iconColor: FlutterFlowTheme.of(context).primaryText,
-                  iconSize: 18.0,
-                  elevation: 4.0,
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                unselectedChipStyle: ChipStyle(
-                  backgroundColor: FlutterFlowTheme.of(context).alternate,
-                  textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                      ),
-                  iconColor: FlutterFlowTheme.of(context).secondaryText,
-                  iconSize: 18.0,
-                  elevation: 0.0,
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                chipSpacing: 12.0,
-                rowSpacing: 12.0,
-                multiselect: false,
-                alignment: WrapAlignment.start,
-                controller: _model.choiceChipsValueController ??=
-                    FormFieldController<List<String>>(
-                  [],
-                ),
-                wrapped: true,
               ),
               Expanded(
                 child: Padding(
@@ -202,7 +219,9 @@ class _ProductsWidgetState extends State<ProductsWidget>
                     },
                     child: PagedListView<ApiPagingParams, dynamic>(
                       pagingController: _model.setListViewController(
-                        (nextPageMarker) => ProductsCall.call(),
+                        (nextPageMarker) => ProductListingCall.call(
+                          cat: FFAppState().category,
+                        ),
                       ),
                       padding: EdgeInsets.zero,
                       reverse: false,

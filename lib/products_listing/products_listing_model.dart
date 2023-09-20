@@ -10,11 +10,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
 
-class ProductsModel extends FlutterFlowModel {
+class ProductsListingModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -60,13 +61,13 @@ class ProductsModel extends FlutterFlowModel {
         lastResponse: null,
       ),
     );
-    return controller..addPageRequestListener(listViewProductsPage);
+    return controller..addPageRequestListener(listViewProductListingPage);
   }
 
-  void listViewProductsPage(ApiPagingParams nextPageMarker) =>
-      listViewApiCall!(nextPageMarker).then((listViewProductsResponse) {
-        final pageItems = (ProductsCall.products(
-                  listViewProductsResponse.jsonBody,
+  void listViewProductListingPage(ApiPagingParams nextPageMarker) =>
+      listViewApiCall!(nextPageMarker).then((listViewProductListingResponse) {
+        final pageItems = (ProductListingCall.productsCat(
+                  listViewProductListingResponse.jsonBody,
                 )! ??
                 [])
             .toList() as List;
@@ -77,7 +78,7 @@ class ProductsModel extends FlutterFlowModel {
               ? ApiPagingParams(
                   nextPageNumber: nextPageMarker.nextPageNumber + 1,
                   numItems: newNumItems,
-                  lastResponse: listViewProductsResponse,
+                  lastResponse: listViewProductListingResponse,
                 )
               : null,
         );

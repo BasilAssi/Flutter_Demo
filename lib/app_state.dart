@@ -54,6 +54,12 @@ class FFAppState extends ChangeNotifier {
     _token = _value;
     prefs.setString('ff_token', _value);
   }
+
+  String _category = 'smartphones';
+  String get category => _category;
+  set category(String _value) {
+    _category = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
