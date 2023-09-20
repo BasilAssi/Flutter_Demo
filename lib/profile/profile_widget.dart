@@ -178,34 +178,53 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 12.0),
-                            child: Container(
-                              width: 44.0,
-                              height: 44.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                shape: BoxShape.circle,
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'Products',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.fade,
+                                duration: Duration(milliseconds: 300),
                               ),
-                              alignment: AlignmentDirectional(0.00, 0.00),
-                              child: Icon(
-                                Icons.work_outline,
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                size: 24.0,
+                            },
+                          );
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 12.0),
+                              child: Container(
+                                width: 44.0,
+                                height: 44.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  shape: BoxShape.circle,
+                                ),
+                                alignment: AlignmentDirectional(0.00, 0.00),
+                                child: Icon(
+                                  Icons.work_outline,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
                               ),
                             ),
-                          ),
-                          Text(
-                            'Passenger Documents',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context).titleSmall,
-                          ),
-                        ],
+                            Text(
+                              'Passenger Documents',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context).titleSmall,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Expanded(

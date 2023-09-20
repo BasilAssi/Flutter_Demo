@@ -35,12 +35,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => Login1Widget(),
+      errorBuilder: (context, state) => appStateNotifier.showSplashImage
+          ? Builder(
+              builder: (context) => Container(
+                color: Color(0x4D294944),
+                child: Image.asset(
+                  'assets/images/Screenshot_2023-03-31_173136.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+            )
+          : Login1Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => Login1Widget(),
+          builder: (context, _) => appStateNotifier.showSplashImage
+              ? Builder(
+                  builder: (context) => Container(
+                    color: Color(0x4D294944),
+                    child: Image.asset(
+                      'assets/images/Screenshot_2023-03-31_173136.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                )
+              : Login1Widget(),
         ),
         FFRoute(
           name: 'HomePage',
@@ -56,6 +76,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Profile',
           path: '/profile',
           builder: (context, params) => ProfileWidget(),
+        ),
+        FFRoute(
+          name: 'Products',
+          path: '/products',
+          builder: (context, params) => ProductsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
