@@ -170,6 +170,11 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                           FFAppState().address =
                                               _model.dropDownValue!;
                                         });
+                                        await AddressCall.call(
+                                          address: _model.dropDownValue,
+                                          randomNumber: random_data
+                                              .randomInteger(0, 4294967296),
+                                        );
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
