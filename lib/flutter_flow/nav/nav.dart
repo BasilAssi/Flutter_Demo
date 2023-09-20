@@ -45,7 +45,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : ProductsListingWidget(),
+          : CreatePartner1Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -60,12 +60,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : ProductsListingWidget(),
-        ),
-        FFRoute(
-          name: 'HomePage',
-          path: '/homePage',
-          builder: (context, params) => HomePageWidget(),
+              : CreatePartner1Widget(),
         ),
         FFRoute(
           name: 'Login1',
@@ -86,6 +81,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ProductsListing',
           path: '/productsListing',
           builder: (context, params) => ProductsListingWidget(),
+        ),
+        FFRoute(
+          name: 'CreatePartner_1',
+          path: '/createPartner1',
+          builder: (context, params) => CreatePartner1Widget(),
+        ),
+        FFRoute(
+          name: 'CreatePartner_2',
+          path: '/createPartner2',
+          builder: (context, params) => CreatePartner2Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

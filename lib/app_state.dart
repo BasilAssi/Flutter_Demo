@@ -60,6 +60,18 @@ class FFAppState extends ChangeNotifier {
   set category(String _value) {
     _category = _value;
   }
+
+  String _address = '';
+  String get address => _address;
+  set address(String _value) {
+    _address = _value;
+  }
+
+  String _encodedIdForAddress = '';
+  String get encodedIdForAddress => _encodedIdForAddress;
+  set encodedIdForAddress(String _value) {
+    _encodedIdForAddress = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

@@ -1,7 +1,10 @@
 // Export pages
-export '/pages/home_page/home_page_widget.dart' show HomePageWidget;
 export '/login1/login1_widget.dart' show Login1Widget;
 export '/profile/profile_widget.dart' show ProfileWidget;
 export '/products/products_widget.dart' show ProductsWidget;
 export '/products_listing/products_listing_widget.dart'
     show ProductsListingWidget;
+export '/pages/create_partner_1/create_partner1_widget.dart'
+    show CreatePartner1Widget;
+export '/pages/create_partner_2/create_partner2_widget.dart'
+    show CreatePartner2Widget;
