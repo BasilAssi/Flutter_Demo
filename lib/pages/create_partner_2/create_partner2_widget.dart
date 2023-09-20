@@ -170,6 +170,24 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                           FFAppState().address =
                                               _model.dropDownValue!;
                                         });
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              FFAppState().encodedIdForAddress,
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                          ),
+                                        );
                                       },
                                       width: 321.0,
                                       height: 50.0,
