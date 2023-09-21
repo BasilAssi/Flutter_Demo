@@ -1,12 +1,11 @@
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_autocomplete_options_list.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -30,10 +29,6 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
     super.initState();
     _model = createModel(context, () => CreatePartner2Model());
 
-    _model.firstNameController ??= TextEditingController();
-    _model.lastNameController ??= TextEditingController();
-    _model.mobileNumberController ??= TextEditingController();
-    _model.emailAddressController ??= TextEditingController();
     _model.iDNumberController ??= TextEditingController();
   }
 
@@ -122,424 +117,6 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                         .labelMedium,
                                   ),
                                 ),
-                                FutureBuilder<ApiCallResponse>(
-                                  future: AddressCall.call(
-                                    randomNumber:
-                                        random_data.randomInteger(0, 1000),
-                                    address: FFAppState().address,
-                                  ),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: CircularProgressIndicator(
-                                            valueColor:
-                                                AlwaysStoppedAnimation<Color>(
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    final dropDownAddressResponse =
-                                        snapshot.data!;
-                                    return FlutterFlowDropDown<String>(
-                                      controller:
-                                          _model.dropDownValueController ??=
-                                              FormFieldController<String>(null),
-                                      options: (AddressCall.namesOfAddress(
-                                        dropDownAddressResponse.jsonBody,
-                                      ) as List)
-                                          .map<String>((s) => s.toString())
-                                          .toList()!
-                                          .map((e) => e.toString())
-                                          .toList(),
-                                      onChanged: (val) async {
-                                        setState(
-                                            () => _model.dropDownValue = val);
-                                        setState(() {
-                                          FFAppState().encodedIdForAddress =
-                                              getJsonField(
-                                            dropDownAddressResponse.jsonBody,
-                                            r'''$.records[:].encodedId''',
-                                          ).toString();
-                                          FFAppState().address =
-                                              _model.dropDownValue!;
-                                        });
-                                        await AddressCall.call(
-                                          address: _model.dropDownValue,
-                                          randomNumber: random_data
-                                              .randomInteger(0, 4294967296),
-                                        );
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              FFAppState().encodedIdForAddress,
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
-                                              ),
-                                            ),
-                                            duration:
-                                                Duration(milliseconds: 4000),
-                                            backgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondary,
-                                          ),
-                                        );
-                                      },
-                                      width: 321.0,
-                                      height: 50.0,
-                                      searchHintTextStyle:
-                                          FlutterFlowTheme.of(context)
-                                              .labelMedium,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                      hintText: 'Please select address',
-                                      searchHintText:
-                                          'Search for an address...',
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
-                                      ),
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      elevation: 2.0,
-                                      borderColor: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      borderWidth: 2.0,
-                                      borderRadius: 8.0,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 4.0, 16.0, 4.0),
-                                      hidesUnderline: true,
-                                      isSearchable: true,
-                                      isMultiSelect: false,
-                                    );
-                                  },
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 16.0),
-                                  child: Container(
-                                    width: 370.0,
-                                    child: Autocomplete<String>(
-                                      initialValue: TextEditingValue(),
-                                      optionsBuilder: (textEditingValue) {
-                                        if (textEditingValue.text == '') {
-                                          return const Iterable<String>.empty();
-                                        }
-                                        return ['Option 1'].where((option) {
-                                          final lowercaseOption =
-                                              option.toLowerCase();
-                                          return lowercaseOption.contains(
-                                              textEditingValue.text
-                                                  .toLowerCase());
-                                        });
-                                      },
-                                      optionsViewBuilder:
-                                          (context, onSelected, options) {
-                                        return AutocompleteOptionsList(
-                                          textFieldKey: _model.firstNameKey,
-                                          textController:
-                                              _model.firstNameController!,
-                                          options: options.toList(),
-                                          onSelected: onSelected,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium,
-                                          textHighlightStyle: TextStyle(),
-                                          elevation: 4.0,
-                                          optionBackgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryBackground,
-                                          optionHighlightColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          maxHeight: 200.0,
-                                        );
-                                      },
-                                      onSelected: (String selection) {
-                                        setState(() =>
-                                            _model.firstNameSelectedOption =
-                                                selection);
-                                        FocusScope.of(context).unfocus();
-                                      },
-                                      fieldViewBuilder: (
-                                        context,
-                                        textEditingController,
-                                        focusNode,
-                                        onEditingComplete,
-                                      ) {
-                                        _model.firstNameController =
-                                            textEditingController;
-                                        return TextFormField(
-                                          key: _model.firstNameKey,
-                                          controller: textEditingController,
-                                          focusNode: focusNode,
-                                          onEditingComplete: onEditingComplete,
-                                          autofocus: true,
-                                          autofillHints: [
-                                            AutofillHints.addressCity
-                                          ],
-                                          obscureText: false,
-                                          decoration: InputDecoration(
-                                            labelText: 'First Name',
-                                            labelStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelMedium,
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                width: 2.0,
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(12.0),
-                                            ),
-                                            filled: true,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryBackground,
-                                            prefixIcon: Icon(
-                                              Icons.person,
-                                            ),
-                                          ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
-                                          validator: _model
-                                              .firstNameControllerValidator
-                                              .asValidator(context),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 16.0),
-                                  child: Container(
-                                    width: 370.0,
-                                    child: TextFormField(
-                                      controller: _model.lastNameController,
-                                      autofocus: true,
-                                      autofillHints: [AutofillHints.name],
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelText: 'Last Name',
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                      validator: _model
-                                          .lastNameControllerValidator
-                                          .asValidator(context),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 16.0),
-                                  child: Container(
-                                    width: 370.0,
-                                    child: TextFormField(
-                                      controller: _model.mobileNumberController,
-                                      autofocus: true,
-                                      autofillHints: [AutofillHints.email],
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelText: 'Mobile Number',
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                      keyboardType: TextInputType.emailAddress,
-                                      validator: _model
-                                          .mobileNumberControllerValidator
-                                          .asValidator(context),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 16.0),
-                                  child: Container(
-                                    width: 370.0,
-                                    child: TextFormField(
-                                      controller: _model.emailAddressController,
-                                      autofocus: true,
-                                      obscureText: false,
-                                      decoration: InputDecoration(
-                                        labelText: 'Email',
-                                        labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            width: 2.0,
-                                          ),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                        ),
-                                        filled: true,
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
-                                      validator: _model
-                                          .emailAddressControllerValidator
-                                          .asValidator(context),
-                                    ),
-                                  ),
-                                ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
@@ -547,10 +124,48 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                     width: 370.0,
                                     child: TextFormField(
                                       controller: _model.iDNumberController,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.iDNumberController',
+                                        Duration(milliseconds: 2000),
+                                        () async {
+                                          _model.apiResultAddress =
+                                              await AddressCall.call(
+                                            address:
+                                                _model.iDNumberController.text,
+                                            randomNumber: random_data
+                                                .randomInteger(0, 4294967296),
+                                          );
+                                          if ((_model.apiResultAddress
+                                                  ?.succeeded ??
+                                              true)) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Good',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondary,
+                                              ),
+                                            );
+                                          }
+
+                                          setState(() {});
+                                        },
+                                      ),
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'ID Number',
+                                        labelText:
+                                            'Please select your address . . .',
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
                                         enabledBorder: OutlineInputBorder(
@@ -604,12 +219,117 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
+                                  child: FutureBuilder<ApiCallResponse>(
+                                    future: (_model.apiRequestCompleter ??=
+                                            Completer<ApiCallResponse>()
+                                              ..complete(AddressCall.call(
+                                                address: _model
+                                                    .iDNumberController.text,
+                                                randomNumber:
+                                                    random_data.randomInteger(
+                                                        0, 4294967296),
+                                              )))
+                                        .future,
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final listViewAddressResponse =
+                                          snapshot.data!;
+                                      return Builder(
+                                        builder: (context) {
+                                          final listViewAddresRes =
+                                              listViewAddressResponse.jsonBody
+                                                  .toList();
+                                          return RefreshIndicator(
+                                            onRefresh: () async {
+                                              setState(() => _model
+                                                  .apiRequestCompleter = null);
+                                              await _model
+                                                  .waitForApiRequestCompleted();
+                                            },
+                                            child: ListView.builder(
+                                              padding: EdgeInsets.zero,
+                                              shrinkWrap: true,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount:
+                                                  listViewAddresRes.length,
+                                              itemBuilder: (context,
+                                                  listViewAddresResIndex) {
+                                                final listViewAddresResItem =
+                                                    listViewAddresRes[
+                                                        listViewAddresResIndex];
+                                                return Container(
+                                                  width: 100.0,
+                                                  height: 50.0,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFFF1F4F8),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12.0),
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Text(
+                                                        getJsonField(
+                                                          listViewAddresResItem,
+                                                          r'''$.records[:].name''',
+                                                        ).toString(),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                      ),
+                                                      Text(
+                                                        getJsonField(
+                                                          listViewAddresResItem,
+                                                          r'''$.records[:].encodedId''',
+                                                        ).toString(),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () {
                                       print('Button pressed ...');
                                     },
-                                    text: 'Next ',
+                                    text: 'Create Account',
                                     options: FFButtonOptions(
                                       width: 370.0,
                                       height: 44.0,

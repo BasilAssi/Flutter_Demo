@@ -72,6 +72,12 @@ class FFAppState extends ChangeNotifier {
   set encodedIdForAddress(String _value) {
     _encodedIdForAddress = _value;
   }
+
+  bool _selectedAddress = false;
+  bool get selectedAddress => _selectedAddress;
+  set selectedAddress(bool _value) {
+    _selectedAddress = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

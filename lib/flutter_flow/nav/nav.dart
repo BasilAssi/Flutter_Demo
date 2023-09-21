@@ -45,7 +45,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : CreatePartner1Widget(),
+          : CreatePartner2Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -60,7 +60,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : CreatePartner1Widget(),
+              : CreatePartner2Widget(),
         ),
         FFRoute(
           name: 'Login1',
