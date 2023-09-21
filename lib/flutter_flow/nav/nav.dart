@@ -38,10 +38,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       errorBuilder: (context, state) => appStateNotifier.showSplashImage
           ? Builder(
               builder: (context) => Container(
-                color: Color(0xFF181818),
-                child: Image.asset(
-                  'assets/images/Screenshot_2023-03-31_173136.png',
-                  fit: BoxFit.contain,
+                color: Colors.transparent,
+                child: Center(
+                  child: Image.asset(
+                    'assets/images/Screenshot_2023-09-20_191601_-_Check_.png',
+                    height: 200.0,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             )
@@ -53,10 +56,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, _) => appStateNotifier.showSplashImage
               ? Builder(
                   builder: (context) => Container(
-                    color: Color(0xFF181818),
-                    child: Image.asset(
-                      'assets/images/Screenshot_2023-03-31_173136.png',
-                      fit: BoxFit.contain,
+                    color: Colors.transparent,
+                    child: Center(
+                      child: Image.asset(
+                        'assets/images/Screenshot_2023-09-20_191601_-_Check_.png',
+                        height: 200.0,
+                        fit: BoxFit.contain,
+                      ),
                     ),
                   ),
                 )
