@@ -48,7 +48,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : CreatePartner2Widget(),
+          : TestProductWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -66,7 +66,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : CreatePartner2Widget(),
+              : TestProductWidget(),
         ),
         FFRoute(
           name: 'Login1',
@@ -97,6 +97,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'CreatePartner_2',
           path: '/createPartner2',
           builder: (context, params) => CreatePartner2Widget(),
+        ),
+        FFRoute(
+          name: 'GoogleMap',
+          path: '/googleMap',
+          builder: (context, params) => GoogleMapWidget(),
+        ),
+        FFRoute(
+          name: 'TestProduct',
+          path: '/testProduct',
+          builder: (context, params) => TestProductWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

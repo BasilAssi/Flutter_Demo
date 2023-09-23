@@ -3,10 +3,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
-import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'create_partner2_model.dart';
@@ -29,7 +29,7 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
     super.initState();
     _model = createModel(context, () => CreatePartner2Model());
 
-    _model.iDNumberController ??= TextEditingController();
+    _model.selectAddressTextFieldController ??= TextEditingController();
   }
 
   @override
@@ -47,7 +47,7 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryText,
         body: SafeArea(
           top: true,
           child: Row(
@@ -130,17 +130,18 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                         child: Container(
                                           width: 370.0,
                                           child: TextFormField(
-                                            controller:
-                                                _model.iDNumberController,
+                                            controller: _model
+                                                .selectAddressTextFieldController,
                                             onChanged: (_) =>
                                                 EasyDebounce.debounce(
-                                              '_model.iDNumberController',
-                                              Duration(milliseconds: 2000),
+                                              '_model.selectAddressTextFieldController',
+                                              Duration(milliseconds: 300),
                                               () async {
                                                 _model.apiResultAddress =
                                                     await AddressCall.call(
                                                   address: _model
-                                                      .iDNumberController.text,
+                                                      .selectAddressTextFieldController
+                                                      .text,
                                                   randomNumber:
                                                       random_data.randomInteger(
                                                           0, 4294967295),
@@ -173,6 +174,8 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                               },
                                             ),
                                             autofocus: true,
+                                            textInputAction:
+                                                TextInputAction.search,
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               labelText:
@@ -225,12 +228,18 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                               fillColor:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,
+                                              suffixIcon: FaIcon(
+                                                FontAwesomeIcons.search,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 25.0,
+                                              ),
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
-                                            keyboardType: TextInputType.number,
                                             validator: _model
-                                                .iDNumberControllerValidator
+                                                .selectAddressTextFieldControllerValidator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -239,18 +248,13 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 0.0, 20.0),
                                         child: FutureBuilder<ApiCallResponse>(
-                                          future: (_model
-                                                      .apiRequestCompleter ??=
-                                                  Completer<ApiCallResponse>()
-                                                    ..complete(AddressCall.call(
-                                                      address: _model
-                                                          .iDNumberController
-                                                          .text,
-                                                      randomNumber: random_data
-                                                          .randomInteger(
-                                                              0, 4294967295),
-                                                    )))
-                                              .future,
+                                          future: AddressCall.call(
+                                            address: _model
+                                                .selectAddressTextFieldController
+                                                .text,
+                                            randomNumber: random_data
+                                                .randomInteger(0, 4294967295),
+                                          ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
@@ -279,27 +283,27 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                                     listViewAddressResponse
                                                         .jsonBody
                                                         .toList();
-                                                return RefreshIndicator(
-                                                  onRefresh: () async {
-                                                    setState(() => _model
-                                                            .apiRequestCompleter =
-                                                        null);
-                                                    await _model
-                                                        .waitForApiRequestCompleted();
-                                                  },
-                                                  child: ListView.builder(
-                                                    padding: EdgeInsets.zero,
-                                                    shrinkWrap: true,
-                                                    scrollDirection:
-                                                        Axis.vertical,
-                                                    itemCount: listViewAddresRes
-                                                        .length,
-                                                    itemBuilder: (context,
-                                                        listViewAddresResIndex) {
-                                                      final listViewAddresResItem =
-                                                          listViewAddresRes[
-                                                              listViewAddresResIndex];
-                                                      return InkWell(
+                                                return ListView.builder(
+                                                  padding: EdgeInsets.zero,
+                                                  shrinkWrap: true,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  itemCount:
+                                                      listViewAddresRes.length,
+                                                  itemBuilder: (context,
+                                                      listViewAddresResIndex) {
+                                                    final listViewAddresResItem =
+                                                        listViewAddresRes[
+                                                            listViewAddresResIndex];
+                                                    return Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  10.0),
+                                                      child: InkWell(
                                                         splashColor:
                                                             Colors.transparent,
                                                         focusColor:
@@ -358,9 +362,9 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                                             ],
                                                           ),
                                                         ),
-                                                      );
-                                                    },
-                                                  ),
+                                                      ),
+                                                    );
+                                                  },
                                                 );
                                               },
                                             );

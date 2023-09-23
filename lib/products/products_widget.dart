@@ -88,7 +88,7 @@ class _ProductsWidgetState extends State<ProductsWidget>
                   controller: _model.textController,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Search for patients...',
+                    labelText: 'Search for products...',
                     labelStyle: FlutterFlowTheme.of(context).labelMedium,
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -139,7 +139,7 @@ class _ProductsWidgetState extends State<ProductsWidget>
                     padding:
                         EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
                     child: Text(
-                      'Patients matching search',
+                      'products matching search',
                       style: FlutterFlowTheme.of(context).labelMedium,
                     ),
                   ),

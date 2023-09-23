@@ -191,6 +191,30 @@ class AddressCall {
       );
 }
 
+class ProductAPICall {
+  static Future<ApiCallResponse> call({
+    String? searchValue = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Product API',
+      apiUrl: 'https://dummyjson.com/products/search?q=${searchValue}',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  static dynamic productData(dynamic response) => getJsonField(
+        response,
+        r'''$.products''',
+        true,
+      );
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
