@@ -204,7 +204,10 @@ class _TestProductWidgetState extends State<TestProductWidget>
                                   onTap: () async {
                                     setState(() {
                                       _model.searchProdcutController?.text =
-                                          productItemIndex.toString();
+                                          getJsonField(
+                                        productItemItem,
+                                        r'''$.title''',
+                                      ).toString();
                                     });
                                   },
                                   child: Container(
