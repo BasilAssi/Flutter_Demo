@@ -15,9 +15,9 @@ class TestProductModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for TextField widget.
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for searchProdcut widget.
+  TextEditingController? searchProdcutController;
+  String? Function(BuildContext, String?)? searchProdcutControllerValidator;
 
   /// Initialization and disposal methods.
 
@@ -25,7 +25,7 @@ class TestProductModel extends FlutterFlowModel {
 
   void dispose() {
     unfocusNode.dispose();
-    textController?.dispose();
+    searchProdcutController?.dispose();
   }
 
   /// Action blocks are added here.

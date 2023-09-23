@@ -31,7 +31,7 @@ class _TestProductWidgetState extends State<TestProductWidget>
     super.initState();
     _model = createModel(context, () => TestProductModel());
 
-    _model.textController ??= TextEditingController();
+    _model.searchProdcutController ??= TextEditingController();
   }
 
   @override
@@ -84,9 +84,9 @@ class _TestProductWidgetState extends State<TestProductWidget>
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
                 child: TextFormField(
-                  controller: _model.textController,
+                  controller: _model.searchProdcutController,
                   onChanged: (_) => EasyDebounce.debounce(
-                    '_model.textController',
+                    '_model.searchProdcutController',
                     Duration(milliseconds: 300),
                     () => setState(() {}),
                   ),
@@ -131,8 +131,8 @@ class _TestProductWidgetState extends State<TestProductWidget>
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium,
                   maxLines: null,
-                  validator:
-                      _model.textControllerValidator.asValidator(context),
+                  validator: _model.searchProdcutControllerValidator
+                      .asValidator(context),
                 ),
               ),
               Row(
@@ -162,7 +162,7 @@ class _TestProductWidgetState extends State<TestProductWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
                   child: FutureBuilder<ApiCallResponse>(
                     future: ProductAPICall.call(
-                      searchValue: _model.textController.text,
+                      searchValue: _model.searchProdcutController.text,
                     ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
@@ -196,119 +196,133 @@ class _TestProductWidgetState extends State<TestProductWidget>
                               return Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 1.0),
-                                child: Container(
-                                  width: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 0.0,
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        offset: Offset(0.0, 1.0),
-                                      )
-                                    ],
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 8.0, 8.0, 8.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(40.0),
-                                              child: Image.network(
-                                                getJsonField(
-                                                  productItemItem,
-                                                  r'''$.thumbnail''',
-                                                ),
-                                                width: 60.0,
-                                                height: 60.0,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Flexible(
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      12.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            getJsonField(
-                                                              productItemItem,
-                                                              r'''$.title''',
-                                                            ).toString(),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyLarge,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        'Price: ${getJsonField(
-                                                          productItemItem,
-                                                          r'''$.price''',
-                                                        ).toString()}\$',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Card(
-                                              clipBehavior:
-                                                  Clip.antiAliasWithSaveLayer,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                              elevation: 1.0,
-                                              shape: RoundedRectangleBorder(
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    setState(() {
+                                      _model.searchProdcutController?.text =
+                                          productItemIndex.toString();
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 0.0,
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          offset: Offset(0.0, 1.0),
+                                        )
+                                      ],
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 8.0, 8.0, 8.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(40.0),
-                                              ),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        4.0, 4.0, 4.0, 4.0),
-                                                child: Icon(
-                                                  Icons
-                                                      .keyboard_arrow_right_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 24.0,
+                                                child: Image.network(
+                                                  getJsonField(
+                                                    productItemItem,
+                                                    r'''$.thumbnail''',
+                                                  ),
+                                                  width: 60.0,
+                                                  height: 60.0,
+                                                  fit: BoxFit.cover,
                                                 ),
                                               ),
-                                            ),
-                                          ],
+                                              Expanded(
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Flexible(
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              getJsonField(
+                                                                productItemItem,
+                                                                r'''$.title''',
+                                                              ).toString(),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyLarge,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          'Price: ${getJsonField(
+                                                            productItemItem,
+                                                            r'''$.price''',
+                                                          ).toString()}\$',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Card(
+                                                clipBehavior:
+                                                    Clip.antiAliasWithSaveLayer,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                elevation: 1.0,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          40.0),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          4.0, 4.0, 4.0, 4.0),
+                                                  child: Icon(
+                                                    Icons
+                                                        .keyboard_arrow_right_rounded,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryText,
+                                                    size: 24.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               );
