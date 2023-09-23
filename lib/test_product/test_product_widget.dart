@@ -68,7 +68,7 @@ class _TestProductWidgetState extends State<TestProductWidget>
             },
           ),
           title: Text(
-            'Search patients',
+            'Search Products',
             style: FlutterFlowTheme.of(context).headlineSmall,
           ),
           actions: [],
