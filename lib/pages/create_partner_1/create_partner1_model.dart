@@ -1,12 +1,13 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'create_partner1_widget.dart' show CreatePartner1Widget;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class CreatePartner1Model extends FlutterFlowModel {
+class CreatePartner1Model extends FlutterFlowModel<CreatePartner1Widget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

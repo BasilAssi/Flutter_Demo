@@ -44,7 +44,9 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -104,7 +106,9 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Become a Partner',
+                                  FFLocalizations.of(context).getText(
+                                    'h7lte5td' /* Become a Partner */,
+                                  ),
                                   style:
                                       FlutterFlowTheme.of(context).displaySmall,
                                 ),
@@ -112,7 +116,9 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 24.0),
                                   child: Text(
-                                    'Let\'s get started by filling out the form below.',
+                                    FFLocalizations.of(context).getText(
+                                      'bmf77c3g' /* Let's get started by filling o... */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium,
                                   ),
@@ -127,7 +133,10 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'First Name',
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          'v1xprqyc' /* First Name */,
+                                        ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
                                         enabledBorder: OutlineInputBorder(
@@ -192,7 +201,10 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                       autofillHints: [AutofillHints.name],
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'Last Name',
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          '6cv1qeus' /* Last Name */,
+                                        ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
                                         enabledBorder: OutlineInputBorder(
@@ -257,7 +269,10 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                       autofillHints: [AutofillHints.email],
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'Mobile Number',
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          'yyv949km' /* Mobile Number */,
+                                        ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
                                         enabledBorder: OutlineInputBorder(
@@ -323,7 +338,10 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'Email',
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          'fh83jzdt' /* Email */,
+                                        ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
                                         enabledBorder: OutlineInputBorder(
@@ -387,7 +405,10 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'ID Number',
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          'gsxjilla' /* ID Number */,
+                                        ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
                                         enabledBorder: OutlineInputBorder(
@@ -459,7 +480,13 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                         },
                                       );
                                     },
-                                    text: 'Next ',
+                                    text: FFLocalizations.of(context).getText(
+                                      'fo05z8hz' /* Continue */,
+                                    ),
+                                    icon: Icon(
+                                      Icons.arrow_forward,
+                                      size: 15.0,
+                                    ),
                                     options: FFButtonOptions(
                                       width: 370.0,
                                       height: 45.0,

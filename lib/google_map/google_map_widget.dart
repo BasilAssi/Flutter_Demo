@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_web_view.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,7 +38,9 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -45,7 +48,9 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Text(
-            'Page Title',
+            FFLocalizations.of(context).getText(
+              '2wwwbyrx' /* Page Title */,
+            ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
@@ -62,6 +67,13 @@ class _GoogleMapWidgetState extends State<GoogleMapWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Spacer(),
+              FlutterFlowWebView(
+                content: 'https://flutter.dev',
+                bypass: false,
+                height: 500.0,
+                verticalScroll: false,
+                horizontalScroll: false,
+              ),
             ],
           ),
         ),

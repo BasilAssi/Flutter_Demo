@@ -44,10 +44,12 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryText,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
           child: Row(
@@ -111,7 +113,9 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Become a Partner',
+                                        FFLocalizations.of(context).getText(
+                                          '8l1uzprw' /* Become a Partner */,
+                                        ),
                                         style: FlutterFlowTheme.of(context)
                                             .displaySmall,
                                       ),
@@ -119,7 +123,9 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 12.0, 0.0, 24.0),
                                         child: Text(
-                                          'Let\'s get started by filling out the form below.',
+                                          FFLocalizations.of(context).getText(
+                                            '3iq2adyr' /* Let's get started by filling o... */,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .labelMedium,
                                         ),
@@ -179,7 +185,10 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               labelText:
-                                                  'Please select your address . . .',
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                'wfu0wl35' /* Please select your address . .... */,
+                                              ),
                                               labelStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .labelMedium,
@@ -383,10 +392,29 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                         padding: EdgeInsetsDirectional.fromSTEB(
                             32.0, 0.0, 32.0, 16.0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            if (Navigator.of(context).canPop()) {
+                              context.pop();
+                            }
+                            context.pushNamed(
+                              'CreatePartner_3',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType:
+                                      PageTransitionType.rightToLeft,
+                                  duration: Duration(milliseconds: 300),
+                                ),
+                              },
+                            );
                           },
-                          text: 'Create Account',
+                          text: FFLocalizations.of(context).getText(
+                            'ru9mavyr' /* Continue */,
+                          ),
+                          icon: Icon(
+                            Icons.arrow_forward,
+                            size: 15.0,
+                          ),
                           options: FFButtonOptions(
                             width: 370.0,
                             height: 44.0,

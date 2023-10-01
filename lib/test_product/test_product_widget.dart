@@ -46,7 +46,9 @@ class _TestProductWidgetState extends State<TestProductWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -68,7 +70,9 @@ class _TestProductWidgetState extends State<TestProductWidget>
             },
           ),
           title: Text(
-            'Search Products',
+            FFLocalizations.of(context).getText(
+              'x23h1iyg' /* Search Products */,
+            ),
             style: FlutterFlowTheme.of(context).headlineSmall,
           ),
           actions: [],
@@ -92,7 +96,9 @@ class _TestProductWidgetState extends State<TestProductWidget>
                   ),
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Search for products...',
+                    labelText: FFLocalizations.of(context).getText(
+                      'qtqpwtwn' /* Search for products... */,
+                    ),
                     labelStyle: FlutterFlowTheme.of(context).labelMedium,
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -143,7 +149,9 @@ class _TestProductWidgetState extends State<TestProductWidget>
                     padding:
                         EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
                     child: Text(
-                      'products matching search',
+                      FFLocalizations.of(context).getText(
+                        'khqqp5z7' /* products matching search */,
+                      ),
                       style: FlutterFlowTheme.of(context).labelMedium,
                     ),
                   ),
@@ -151,7 +159,9 @@ class _TestProductWidgetState extends State<TestProductWidget>
                     padding:
                         EdgeInsetsDirectional.fromSTEB(4.0, 12.0, 16.0, 0.0),
                     child: Text(
-                      '24',
+                      FFLocalizations.of(context).getText(
+                        'htwwxrfa' /* 24 */,
+                      ),
                       style: FlutterFlowTheme.of(context).bodyMedium,
                     ),
                   ),

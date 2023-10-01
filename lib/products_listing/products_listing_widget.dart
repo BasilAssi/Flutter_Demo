@@ -50,7 +50,9 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -72,7 +74,9 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
             },
           ),
           title: Text(
-            'Search patients',
+            FFLocalizations.of(context).getText(
+              'cy7be90p' /* Search patients */,
+            ),
             style: FlutterFlowTheme.of(context).headlineSmall,
           ),
           actions: [],
@@ -91,7 +95,9 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                   controller: _model.textController,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Search for patients...',
+                    labelText: FFLocalizations.of(context).getText(
+                      'kfju0jg8' /* Search for patients... */,
+                    ),
                     labelStyle: FlutterFlowTheme.of(context).labelMedium,
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -150,13 +156,31 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                               10.0, 10.0, 0.0, 0.0),
                           child: FlutterFlowChoiceChips(
                             options: [
-                              ChipData('smartphones', Icons.phone_android),
-                              ChipData('laptops', Icons.laptop),
                               ChipData(
-                                  'fragrances', Icons.twenty_two_mp_rounded),
-                              ChipData('skincare', FontAwesomeIcons.sign),
+                                  FFLocalizations.of(context).getText(
+                                    'byfr0oxe' /* smartphones */,
+                                  ),
+                                  Icons.phone_android),
                               ChipData(
-                                  'groceries', Icons.shopping_cart_outlined)
+                                  FFLocalizations.of(context).getText(
+                                    'kw82s3ga' /* laptops */,
+                                  ),
+                                  Icons.laptop),
+                              ChipData(
+                                  FFLocalizations.of(context).getText(
+                                    'f9kboeqa' /* fragrances */,
+                                  ),
+                                  Icons.twenty_two_mp_rounded),
+                              ChipData(
+                                  FFLocalizations.of(context).getText(
+                                    '8ljkjnb2' /* skincare */,
+                                  ),
+                                  FontAwesomeIcons.sign),
+                              ChipData(
+                                  FFLocalizations.of(context).getText(
+                                    'prqwa57i' /* groceries */,
+                                  ),
+                                  Icons.shopping_cart_outlined)
                             ],
                             onChanged: (val) => setState(
                                 () => _model.choiceChipsValue = val?.first),

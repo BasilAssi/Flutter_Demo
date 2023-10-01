@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 import 'login1_model.dart';
 export 'login1_model.dart';
@@ -42,7 +43,9 @@ class _Login1WidgetState extends State<Login1Widget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -83,7 +86,9 @@ class _Login1WidgetState extends State<Login1Widget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 32.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              'brand.ai',
+                              FFLocalizations.of(context).getText(
+                                'brp26aqi' /* brand.ai */,
+                              ),
                               style: FlutterFlowTheme.of(context).displaySmall,
                             ),
                           ),
@@ -98,7 +103,9 @@ class _Login1WidgetState extends State<Login1Widget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Welcome Back',
+                                  FFLocalizations.of(context).getText(
+                                    '46cq0xja' /* Welcome Back */,
+                                  ),
                                   style:
                                       FlutterFlowTheme.of(context).displaySmall,
                                 ),
@@ -106,7 +113,9 @@ class _Login1WidgetState extends State<Login1Widget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 24.0),
                                   child: Text(
-                                    'Let\'s get started by filling out the form below.',
+                                    FFLocalizations.of(context).getText(
+                                      '5q0o0fud' /* Let's get started by filling o... */,
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium,
                                   ),
@@ -122,7 +131,10 @@ class _Login1WidgetState extends State<Login1Widget> {
                                       autofillHints: [AutofillHints.email],
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        labelText: 'Email',
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          '04i3xjus' /* Email */,
+                                        ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
                                         enabledBorder: OutlineInputBorder(
@@ -185,7 +197,10 @@ class _Login1WidgetState extends State<Login1Widget> {
                                       autofillHints: [AutofillHints.password],
                                       obscureText: !_model.passwordVisibility,
                                       decoration: InputDecoration(
-                                        labelText: 'Password',
+                                        labelText:
+                                            FFLocalizations.of(context).getText(
+                                          'vs0hlqs1' /* Password */,
+                                        ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelMedium,
                                         enabledBorder: OutlineInputBorder(
@@ -330,7 +345,87 @@ class _Login1WidgetState extends State<Login1Widget> {
 
                                       setState(() {});
                                     },
-                                    text: 'Sign In',
+                                    text: FFLocalizations.of(context).getText(
+                                      '3z21j01i' /* Sign In */,
+                                    ),
+                                    options: FFButtonOptions(
+                                      width: 370.0,
+                                      height: 44.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Colors.white,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 16.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      final _localAuth = LocalAuthentication();
+                                      bool _isBiometricSupported =
+                                          await _localAuth.isDeviceSupported();
+                                      bool canCheckBiometrics =
+                                          await _localAuth.canCheckBiometrics;
+                                      if (_isBiometricSupported &&
+                                          canCheckBiometrics) {
+                                        _model.biometricResult =
+                                            await _localAuth.authenticate(
+                                                localizedReason:
+                                                    FFLocalizations.of(context)
+                                                        .getText(
+                                                  'dcujrebv' /* do it */,
+                                                ),
+                                                options:
+                                                    const AuthenticationOptions(
+                                                        biometricOnly: true));
+                                        setState(() {});
+                                      }
+
+                                      if (_model.biometricResult == true) {
+                                        context.pushNamed('GoogleMap');
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'failed',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondary,
+                                          ),
+                                        );
+                                      }
+
+                                      setState(() {});
+                                    },
+                                    text: FFLocalizations.of(context).getText(
+                                      'tg8gwtr2' /* Biometric */,
+                                    ),
                                     options: FFButtonOptions(
                                       width: 370.0,
                                       height: 44.0,
@@ -367,11 +462,17 @@ class _Login1WidgetState extends State<Login1Widget> {
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
-                                          text: 'Don\'t have an account? ',
+                                          text: FFLocalizations.of(context)
+                                              .getText(
+                                            'hhpxmhdr' /* Don't have an account?  */,
+                                          ),
                                           style: TextStyle(),
                                         ),
                                         TextSpan(
-                                          text: ' Sign Up here',
+                                          text: FFLocalizations.of(context)
+                                              .getText(
+                                            'kaxa7wzz' /*  Sign Up here */,
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

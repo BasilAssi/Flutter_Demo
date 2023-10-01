@@ -78,6 +78,12 @@ class FFAppState extends ChangeNotifier {
   set selectedAddress(bool _value) {
     _selectedAddress = _value;
   }
+
+  String _drivingLicense = '';
+  String get drivingLicense => _drivingLicense;
+  set drivingLicense(String _value) {
+    _drivingLicense = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

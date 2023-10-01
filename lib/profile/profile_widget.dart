@@ -38,7 +38,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryText,
@@ -219,7 +221,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ),
                             ),
                             Text(
-                              'Passenger Documents',
+                              FFLocalizations.of(context).getText(
+                                'hqpfncv9' /* Passenger Documents */,
+                              ),
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context).titleSmall,
                             ),
@@ -255,7 +259,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ),
                             ),
                             Text(
-                              'Tracker Notifications',
+                              FFLocalizations.of(context).getText(
+                                'si0hx680' /* Tracker Notifications */,
+                              ),
                               textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context).titleSmall,
                             ),
@@ -287,7 +293,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             ),
                           ),
                           Text(
-                            'Help Center',
+                            FFLocalizations.of(context).getText(
+                              'zy65rdmk' /* Help Center */,
+                            ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context).titleSmall,
                           ),
@@ -333,7 +341,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 12.0),
                                 child: Text(
-                                  'Settings',
+                                  FFLocalizations.of(context).getText(
+                                    'r1jz1y0r' /* Settings */,
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .headlineSmall,
                                 ),
@@ -360,7 +370,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Phone Number',
+                                          FFLocalizations.of(context).getText(
+                                            '09yiz67v' /* Phone Number */,
+                                          ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
@@ -368,7 +380,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ),
                                     ),
                                     Text(
-                                      'Add Number',
+                                      FFLocalizations.of(context).getText(
+                                        '8ngt6bh1' /* Add Number */,
+                                      ),
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -403,7 +417,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Language',
+                                          FFLocalizations.of(context).getText(
+                                            'fycgmo34' /* Language */,
+                                          ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
@@ -411,7 +427,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ),
                                     ),
                                     Text(
-                                      'English (eng)',
+                                      FFLocalizations.of(context).getText(
+                                        'e9ubw7vp' /* English (eng) */,
+                                      ),
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -446,7 +464,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Currency',
+                                          FFLocalizations.of(context).getText(
+                                            '6u3x158n' /* Currency */,
+                                          ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
@@ -454,7 +474,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ),
                                     ),
                                     Text(
-                                      'US Dollar (\$)',
+                                      FFLocalizations.of(context).getText(
+                                        '521xoa4h' /* US Dollar ($) */,
+                                      ),
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -489,7 +511,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Profile Settings',
+                                          FFLocalizations.of(context).getText(
+                                            'z5pxrt57' /* Profile Settings */,
+                                          ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
@@ -497,7 +521,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ),
                                     ),
                                     Text(
-                                      'Edit Profile',
+                                      FFLocalizations.of(context).getText(
+                                        '0w8m6id9' /* Edit Profile */,
+                                      ),
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -532,7 +558,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Notification Settings',
+                                          FFLocalizations.of(context).getText(
+                                            'g4kpeeui' /* Notification Settings */,
+                                          ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
@@ -570,7 +598,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
                                         child: Text(
-                                          'Log out of account',
+                                          FFLocalizations.of(context).getText(
+                                            '4u29yzz5' /* Log out of account */,
+                                          ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
@@ -578,7 +608,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       ),
                                     ),
                                     Text(
-                                      'Log Out?',
+                                      FFLocalizations.of(context).getText(
+                                        '2vpapzss' /* Log Out? */,
+                                      ),
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
