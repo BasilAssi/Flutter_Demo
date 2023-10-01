@@ -135,7 +135,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Biometric',
       'ar': '',
     },
-    'dcujrebv': {
+    'i5zu6bso': {
       'en': 'do it',
       'ar': '',
     },
