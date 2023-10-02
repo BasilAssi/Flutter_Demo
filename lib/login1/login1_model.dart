@@ -16,7 +16,7 @@ class Login1Model extends FlutterFlowModel<Login1Widget> {
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - deviceInfo] action in Login1 widget.
-  dynamic? deviceInfo;
+  dynamic? info;
   // State field(s) for emailAddress widget.
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;

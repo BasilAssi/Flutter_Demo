@@ -31,21 +31,7 @@ class _Login1WidgetState extends State<Login1Widget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.deviceInfo = await actions.deviceInfo();
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text(_model.deviceInfo!.toString()),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
+      _model.info = await actions.deviceInfo();
     });
 
     _model.emailAddressController ??= TextEditingController();
