@@ -2,8 +2,10 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +28,25 @@ class _Login1WidgetState extends State<Login1Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Login1Model());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.deviceInfo = await actions.deviceInfo();
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: Text(_model.deviceInfo!.toString()),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
+    });
 
     _model.emailAddressController ??= TextEditingController();
     _model.passwordController ??= TextEditingController();
@@ -390,7 +411,7 @@ class _Login1WidgetState extends State<Login1Widget> {
                                                 localizedReason:
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                  'i5zu6bso' /* do it */,
+                                                  'dexh3v6c' /* do it */,
                                                 ),
                                                 options:
                                                     const AuthenticationOptions(
