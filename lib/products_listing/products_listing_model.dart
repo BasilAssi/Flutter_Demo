@@ -10,6 +10,7 @@ import 'dart:async';
 import 'products_listing_widget.dart' show ProductsListingWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +22,7 @@ class ProductsListingModel extends FlutterFlowModel<ProductsListingWidget> {
 
   final unfocusNode = FocusNode();
   // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for ChoiceChips widget.
@@ -37,7 +39,9 @@ class ProductsListingModel extends FlutterFlowModel<ProductsListingWidget> {
 
   void dispose() {
     unfocusNode.dispose();
+    textFieldFocusNode?.dispose();
     textController?.dispose();
+
     listViewPagingController?.dispose();
   }
 

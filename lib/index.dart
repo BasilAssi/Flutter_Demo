@@ -12,3 +12,4 @@ export '/google_map/google_map_widget.dart' show GoogleMapWidget;
 export '/test_product/test_product_widget.dart' show TestProductWidget;
 export '/pages/create_partner_3/create_partner3_widget.dart'
     show CreatePartner3Widget;
+export '/dashboard5/dashboard5_widget.dart' show Dashboard5Widget;

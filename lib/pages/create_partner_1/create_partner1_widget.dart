@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'create_partner1_model.dart';
@@ -26,10 +27,15 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
     _model = createModel(context, () => CreatePartner1Model());
 
     _model.firstNameController ??= TextEditingController();
+    _model.firstNameFocusNode ??= FocusNode();
     _model.lastNameController ??= TextEditingController();
+    _model.lastNameFocusNode ??= FocusNode();
     _model.mobileNumberController ??= TextEditingController();
+    _model.mobileNumberFocusNode ??= FocusNode();
     _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressFocusNode ??= FocusNode();
     _model.iDNumberController ??= TextEditingController();
+    _model.iDNumberFocusNode ??= FocusNode();
   }
 
   @override
@@ -41,6 +47,15 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -130,6 +145,7 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                     width: 370.0,
                                     child: TextFormField(
                                       controller: _model.firstNameController,
+                                      focusNode: _model.firstNameFocusNode,
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
@@ -197,6 +213,7 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                     width: 370.0,
                                     child: TextFormField(
                                       controller: _model.lastNameController,
+                                      focusNode: _model.lastNameFocusNode,
                                       autofocus: true,
                                       autofillHints: [AutofillHints.name],
                                       obscureText: false,
@@ -265,6 +282,7 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                     width: 370.0,
                                     child: TextFormField(
                                       controller: _model.mobileNumberController,
+                                      focusNode: _model.mobileNumberFocusNode,
                                       autofocus: true,
                                       autofillHints: [AutofillHints.email],
                                       obscureText: false,
@@ -335,6 +353,7 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                     width: 370.0,
                                     child: TextFormField(
                                       controller: _model.emailAddressController,
+                                      focusNode: _model.emailAddressFocusNode,
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
@@ -402,6 +421,7 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                     width: 370.0,
                                     child: TextFormField(
                                       controller: _model.iDNumberController,
+                                      focusNode: _model.iDNumberFocusNode,
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(

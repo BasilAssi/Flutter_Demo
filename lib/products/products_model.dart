@@ -8,6 +8,7 @@ import 'dart:async';
 import 'products_widget.dart' show ProductsWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -18,6 +19,7 @@ class ProductsModel extends FlutterFlowModel<ProductsWidget> {
 
   final unfocusNode = FocusNode();
   // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for ListView widget.
@@ -31,7 +33,9 @@ class ProductsModel extends FlutterFlowModel<ProductsWidget> {
 
   void dispose() {
     unfocusNode.dispose();
+    textFieldFocusNode?.dispose();
     textController?.dispose();
+
     listViewPagingController?.dispose();
   }
 

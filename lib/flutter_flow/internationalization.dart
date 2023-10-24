@@ -139,6 +139,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'do it',
       'ar': '',
     },
+    'jus1s6kf': {
+      'en': 'EPOPS',
+      'ar': '',
+    },
     'hhpxmhdr': {
       'en': 'Don\'t have an account? ',
       'ar': '',
@@ -396,6 +400,154 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
     'l06tv7vb': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
+  // Dashboard5
+  {
+    'j6xvroaf': {
+      'en': 'Below is a summary of your day.',
+      'ar': '',
+    },
+    '5kzyee4e': {
+      'en': '16',
+      'ar': '',
+    },
+    'wlzjr292': {
+      'en': 'New Activity',
+      'ar': '',
+    },
+    'to0h4lmf': {
+      'en': '16',
+      'ar': '',
+    },
+    'jmylirhu': {
+      'en': 'Current Tasks',
+      'ar': '',
+    },
+    'd0z1q8py': {
+      'en': '16',
+      'ar': '',
+    },
+    'c7usm3r6': {
+      'en': 'Completed Tasks',
+      'ar': '',
+    },
+    'zscfj615': {
+      'en': 'Current Route',
+      'ar': '',
+    },
+    't2fnq4t7': {
+      'en': 'An overview of your route.',
+      'ar': '',
+    },
+    'z60f0930': {
+      'en': '15/26',
+      'ar': '',
+    },
+    '90kh7kv8': {
+      'en': 'Route progress',
+      'ar': '',
+    },
+    '07hsldpw': {
+      'en': '12',
+      'ar': '',
+    },
+    'gy5768el': {
+      'en': 'Tasks to be completed',
+      'ar': '',
+    },
+    'exdmzb51': {
+      'en': 'Current Tasks',
+      'ar': '',
+    },
+    '7eh0d6uk': {
+      'en': 'A summary of your tasks',
+      'ar': '',
+    },
+    'zuuujsri': {
+      'en': 'Task Type',
+      'ar': '',
+    },
+    'c704gqir': {
+      'en':
+          'Task Description here this one is really long and it goes over maybe? And goes to two lines.',
+      'ar': '',
+    },
+    'ovud95b2': {
+      'en': 'Due:',
+      'ar': '',
+    },
+    'oufv9wnz': {
+      'en': 'Today, 6:20pm',
+      'ar': '',
+    },
+    'il0aant2': {
+      'en': 'Update',
+      'ar': '',
+    },
+    'f2uamiyx': {
+      'en': '1',
+      'ar': '',
+    },
+    'y3n2pmfp': {
+      'en': 'Task Type',
+      'ar': '',
+    },
+    'p382fvhx': {
+      'en': 'Task description here.',
+      'ar': '',
+    },
+    'wxob937l': {
+      'en': 'Due:',
+      'ar': '',
+    },
+    'lullelju': {
+      'en': 'Today, 6:20pm',
+      'ar': '',
+    },
+    '5ui89wpq': {
+      'en': 'Update',
+      'ar': '',
+    },
+    'qwy70vo2': {
+      'en': '1',
+      'ar': '',
+    },
+    'px41pomy': {
+      'en': 'Recent Activity',
+      'ar': '',
+    },
+    '2keq2k3b': {
+      'en': 'Below is an overview of tasks & activity completed.',
+      'ar': '',
+    },
+    '3oufcnof': {
+      'en': 'Tasks',
+      'ar': '',
+    },
+    'udd6ei3v': {
+      'en': 'Completed',
+      'ar': '',
+    },
+    '0454qh26': {
+      'en': 'Launches',
+      'ar': '',
+    },
+    '669r1thr': {
+      'en': 'Last 30 Days',
+      'ar': '',
+    },
+    'xuxjjwe6': {
+      'en': 'Avg. Grade',
+      'ar': '',
+    },
+    '7yypf44f': {
+      'en': 'Dashboard',
+      'ar': '',
+    },
+    'rwoynsdb': {
       'en': 'Home',
       'ar': '',
     },

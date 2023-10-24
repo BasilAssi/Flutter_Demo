@@ -6,6 +6,7 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,9 @@ class _Login1WidgetState extends State<Login1Widget> {
     });
 
     _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressFocusNode ??= FocusNode();
     _model.passwordController ??= TextEditingController();
+    _model.passwordFocusNode ??= FocusNode();
   }
 
   @override
@@ -47,6 +50,15 @@ class _Login1WidgetState extends State<Login1Widget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -134,6 +146,7 @@ class _Login1WidgetState extends State<Login1Widget> {
                                     width: 370.0,
                                     child: TextFormField(
                                       controller: _model.emailAddressController,
+                                      focusNode: _model.emailAddressFocusNode,
                                       autofocus: true,
                                       autofillHints: [AutofillHints.email],
                                       obscureText: false,
@@ -200,6 +213,7 @@ class _Login1WidgetState extends State<Login1Widget> {
                                     width: 370.0,
                                     child: TextFormField(
                                       controller: _model.passwordController,
+                                      focusNode: _model.passwordFocusNode,
                                       autofocus: true,
                                       autofillHints: [AutofillHints.password],
                                       obscureText: !_model.passwordVisibility,
@@ -307,6 +321,8 @@ class _Login1WidgetState extends State<Login1Widget> {
                                             (_model.apiLoginResult?.jsonBody ??
                                                 ''),
                                           ).toString();
+                                          FFAppState().category =
+                                              _model.info!.toString();
                                         });
 
                                         context.pushNamed('Profile');
@@ -432,6 +448,41 @@ class _Login1WidgetState extends State<Login1Widget> {
                                     },
                                     text: FFLocalizations.of(context).getText(
                                       'tg8gwtr2' /* Biometric */,
+                                    ),
+                                    options: FFButtonOptions(
+                                      width: 370.0,
+                                      height: 44.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Colors.white,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 16.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () {
+                                      print('Button pressed ...');
+                                    },
+                                    text: FFLocalizations.of(context).getText(
+                                      'jus1s6kf' /* EPOPS */,
                                     ),
                                     options: FFButtonOptions(
                                       width: 370.0,

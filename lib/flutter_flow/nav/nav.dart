@@ -113,6 +113,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'CreatePartner_3',
           path: '/createPartner3',
           builder: (context, params) => CreatePartner3Widget(),
+        ),
+        FFRoute(
+          name: 'Dashboard5',
+          path: '/dashboard5',
+          builder: (context, params) => Dashboard5Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

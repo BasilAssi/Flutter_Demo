@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import '../../flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
@@ -12,7 +12,7 @@ class LoginCall {
   static Future<ApiCallResponse> call({
     String? username = '',
     String? password = '',
-  }) {
+  }) async {
     final ffApiRequestBody = '''
 {
 "username":"${username}",
@@ -70,7 +70,7 @@ class LoginCall {
 }
 
 class LoginLogisticsCall {
-  static Future<ApiCallResponse> call() {
+  static Future<ApiCallResponse> call() async {
     final ffApiRequestBody = '''
 {
   "msgId": "8288288858908"
@@ -97,7 +97,7 @@ class LoginLogisticsCall {
 }
 
 class ProductsCall {
-  static Future<ApiCallResponse> call() {
+  static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
       callName: 'Products',
       apiUrl: 'https://dummyjson.com/products',
@@ -131,7 +131,7 @@ class ProductsCall {
 class ProductListingCall {
   static Future<ApiCallResponse> call({
     String? cat = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'ProductListing',
       apiUrl: 'https://dummyjson.com/products/category/${cat}',
@@ -156,7 +156,7 @@ class AddressCall {
   static Future<ApiCallResponse> call({
     String? address = '',
     int? randomNumber,
-  }) {
+  }) async {
     final ffApiRequestBody = '''
 {
   "msgId": "8288288811812",
@@ -193,7 +193,7 @@ class AddressCall {
 class ProductAPICall {
   static Future<ApiCallResponse> call({
     String? searchValue = '',
-  }) {
+  }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Product API',
       apiUrl: 'https://dummyjson.com/products/search?q=${searchValue}',

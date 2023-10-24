@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,7 @@ class _TestProductWidgetState extends State<TestProductWidget>
     _model = createModel(context, () => TestProductModel());
 
     _model.searchProdcutController ??= TextEditingController();
+    _model.searchProdcutFocusNode ??= FocusNode();
   }
 
   @override
@@ -43,6 +45,15 @@ class _TestProductWidgetState extends State<TestProductWidget>
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -89,6 +100,7 @@ class _TestProductWidgetState extends State<TestProductWidget>
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
                 child: TextFormField(
                   controller: _model.searchProdcutController,
+                  focusNode: _model.searchProdcutFocusNode,
                   onChanged: (_) => EasyDebounce.debounce(
                     '_model.searchProdcutController',
                     Duration(milliseconds: 300),

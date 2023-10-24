@@ -7,6 +7,7 @@ import 'login1_widget.dart' show Login1Widget;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
@@ -18,9 +19,11 @@ class Login1Model extends FlutterFlowModel<Login1Widget> {
   // Stores action output result for [Custom Action - deviceInfo] action in Login1 widget.
   dynamic? info;
   // State field(s) for emailAddress widget.
+  FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
   // State field(s) for password widget.
+  FocusNode? passwordFocusNode;
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
@@ -36,7 +39,10 @@ class Login1Model extends FlutterFlowModel<Login1Widget> {
 
   void dispose() {
     unfocusNode.dispose();
+    emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();
+
+    passwordFocusNode?.dispose();
     passwordController?.dispose();
   }
 

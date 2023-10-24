@@ -9,6 +9,7 @@ import '/flutter_flow/form_field_controller.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,6 +37,7 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
     _model = createModel(context, () => ProductsListingModel());
 
     _model.textController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -47,6 +49,15 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -93,6 +104,7 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 0.0),
                 child: TextFormField(
                   controller: _model.textController,
+                  focusNode: _model.textFieldFocusNode,
                   obscureText: false,
                   decoration: InputDecoration(
                     labelText: FFLocalizations.of(context).getText(

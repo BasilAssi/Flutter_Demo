@@ -7,6 +7,7 @@ import 'create_partner2_widget.dart' show CreatePartner2Widget;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class CreatePartner2Model extends FlutterFlowModel<CreatePartner2Widget> {
 
   final unfocusNode = FocusNode();
   // State field(s) for selectAddressTextField widget.
+  FocusNode? selectAddressTextFieldFocusNode;
   TextEditingController? selectAddressTextFieldController;
   String? Function(BuildContext, String?)?
       selectAddressTextFieldControllerValidator;
@@ -28,6 +30,7 @@ class CreatePartner2Model extends FlutterFlowModel<CreatePartner2Widget> {
 
   void dispose() {
     unfocusNode.dispose();
+    selectAddressTextFieldFocusNode?.dispose();
     selectAddressTextFieldController?.dispose();
   }
 
