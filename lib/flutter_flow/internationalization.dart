@@ -147,6 +147,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'EPOPS  22',
       'ar': '',
     },
+    'h75jiz9k': {
+      'en': 'EPOPS  33',
+      'ar': '',
+    },
     'hhpxmhdr': {
       'en': 'Don\'t have an account? ',
       'ar': '',
