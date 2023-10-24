@@ -478,8 +478,8 @@ class _Login1WidgetState extends State<Login1Widget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
-                                    onPressed: () {
-                                      print('Button pressed ...');
+                                    onPressed: () async {
+                                      await actions.externalLuncher();
                                     },
                                     text: FFLocalizations.of(context).getText(
                                       'jus1s6kf' /* EPOPS */,
