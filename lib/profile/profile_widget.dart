@@ -3,17 +3,16 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'profile_model.dart';
 export 'profile_model.dart';
 
 class ProfileWidget extends StatefulWidget {
-  const ProfileWidget({Key? key}) : super(key: key);
+  const ProfileWidget({super.key});
 
   @override
-  _ProfileWidgetState createState() => _ProfileWidgetState();
+  State<ProfileWidget> createState() => _ProfileWidgetState();
 }
 
 class _ProfileWidgetState extends State<ProfileWidget> {
@@ -36,15 +35,6 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -76,7 +66,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
           elevation: 0.0,
         ),
         body: Align(
-          alignment: AlignmentDirectional(0.00, 0.00),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -85,7 +75,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 child: Stack(
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0.00, 0.00),
+                      alignment: AlignmentDirectional(0.0, 0.0),
                       child: Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
@@ -98,8 +88,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             shape: BoxShape.circle,
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                2.0, 2.0, 2.0, 2.0),
+                            padding: EdgeInsets.all(2.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(50.0),
                               child: Image.network(
@@ -114,7 +103,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(1.00, 0.00),
+                      alignment: AlignmentDirectional(1.0, 0.0),
                       child: Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
@@ -133,8 +122,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  4.0, 4.0, 4.0, 4.0),
+                              padding: EdgeInsets.all(4.0),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(50.0),
                                 child: Image.asset(
@@ -163,6 +151,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   style: FlutterFlowTheme.of(context).headlineSmall.override(
                         fontFamily: 'Outfit',
                         color: FlutterFlowTheme.of(context).info,
+                        letterSpacing: 0.0,
                       ),
                 ),
               ),
@@ -171,6 +160,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                 style: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Readex Pro',
                       color: FlutterFlowTheme.of(context).accent4,
+                      letterSpacing: 0.0,
                     ),
               ),
               Padding(
@@ -180,6 +170,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   style: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Readex Pro',
                         color: FlutterFlowTheme.of(context).accent4,
+                        letterSpacing: 0.0,
                       ),
                 ),
               ),
@@ -221,7 +212,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       .secondaryBackground,
                                   shape: BoxShape.circle,
                                 ),
-                                alignment: AlignmentDirectional(0.00, 0.00),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Icon(
                                   Icons.work_outline,
                                   color:
@@ -235,7 +226,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 'hqpfncv9' /* Passenger Documents */,
                               ),
                               textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context).titleSmall,
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
                           ],
                         ),
@@ -259,7 +255,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       .secondaryBackground,
                                   shape: BoxShape.circle,
                                 ),
-                                alignment: AlignmentDirectional(0.00, 0.00),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: Icon(
                                   Icons.notifications_outlined,
                                   color:
@@ -273,7 +269,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 'si0hx680' /* Tracker Notifications */,
                               ),
                               textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context).titleSmall,
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
                           ],
                         ),
@@ -294,7 +295,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     .secondaryBackground,
                                 shape: BoxShape.circle,
                               ),
-                              alignment: AlignmentDirectional(0.00, 0.00),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Icon(
                                 Icons.help_outline_outlined,
                                 color: FlutterFlowTheme.of(context).primaryText,
@@ -307,7 +308,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               'zy65rdmk' /* Help Center */,
                             ),
                             textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context).titleSmall,
+                            style: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ],
                       ),
@@ -325,7 +331,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       BoxShadow(
                         blurRadius: 3.0,
                         color: Color(0x33000000),
-                        offset: Offset(0.0, -1.0),
+                        offset: Offset(
+                          0.0,
+                          -1.0,
+                        ),
                       )
                     ],
                     borderRadius: BorderRadius.only(
@@ -355,7 +364,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     'r1jz1y0r' /* Settings */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
-                                      .headlineSmall,
+                                      .headlineSmall
+                                      .override(
+                                        fontFamily: 'Outfit',
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
                               ),
                               Padding(
@@ -385,7 +398,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -400,6 +417,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             fontFamily: 'Readex Pro',
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ],
@@ -432,7 +450,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -447,6 +469,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             fontFamily: 'Readex Pro',
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ],
@@ -479,7 +502,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -494,6 +521,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             fontFamily: 'Readex Pro',
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ],
@@ -526,7 +554,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -541,6 +573,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             fontFamily: 'Readex Pro',
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ],
@@ -573,7 +606,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -613,7 +650,11 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           ),
                                           textAlign: TextAlign.start,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium,
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -628,6 +669,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             fontFamily: 'Readex Pro',
                                             color: FlutterFlowTheme.of(context)
                                                 .primary,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ],

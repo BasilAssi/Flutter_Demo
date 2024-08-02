@@ -362,29 +362,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
   },
-  // TestProduct
-  {
-    'qtqpwtwn': {
-      'en': 'Search for products...',
-      'ar': '',
-    },
-    'khqqp5z7': {
-      'en': 'products matching search',
-      'ar': '',
-    },
-    'htwwxrfa': {
-      'en': '24',
-      'ar': '',
-    },
-    'x23h1iyg': {
-      'en': 'Search Products',
-      'ar': '',
-    },
-    '9ker4a0q': {
-      'en': 'Home',
-      'ar': '',
-    },
-  },
   // CreatePartner_3
   {
     'ejdq6spd': {
@@ -556,6 +533,99 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
     'rwoynsdb': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
+  // PlacePincker
+  {
+    'xblmc97o': {
+      'en': 'Select Place',
+      'ar': '',
+    },
+    'zsrb4iqy': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+    'cgbtpusc': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+    '3pngzlnh': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+    'p4ikfda3': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+    '8ulrwfea': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+    '0mipxidh': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+    '69v0tzco': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+    'a089tws3': {
+      'en': 'Page Title',
+      'ar': '',
+    },
+    '5t5kzb5i': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
+  // ProductsCopy
+  {
+    'qivv457l': {
+      'en': 'Search for products...',
+      'ar': '',
+    },
+    'ahoe7z19': {
+      'en': 'products matching search',
+      'ar': '',
+    },
+    'aoeiu0f0': {
+      'en': '24',
+      'ar': '',
+    },
+    'l93df8r7': {
+      'en': 'Search patients',
+      'ar': '',
+    },
+    'wqq07lhg': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
+  // ProductsCopyCopy
+  {
+    '6lorql8l': {
+      'en': 'Search for products...',
+      'ar': '',
+    },
+    'kjcl20ot': {
+      'en': 'products matching search',
+      'ar': '',
+    },
+    'gqjb00lv': {
+      'en': '24',
+      'ar': '',
+    },
+    '3vp4rhxe': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+    'i98d6cmm': {
+      'en': 'Search patients',
+      'ar': '',
+    },
+    'igj38ps2': {
       'en': 'Home',
       'ar': '',
     },

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import '/backend/schema/structs/index.dart';
 import 'backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'dart:convert';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -32,68 +34,87 @@ class FFAppState extends ChangeNotifier {
 
   String _username = '';
   String get username => _username;
-  set username(String _value) {
-    _username = _value;
+  set username(String value) {
+    _username = value;
   }
 
   String _gender = '';
   String get gender => _gender;
-  set gender(String _value) {
-    _gender = _value;
+  set gender(String value) {
+    _gender = value;
   }
 
   String _image = '';
   String get image => _image;
-  set image(String _value) {
-    _image = _value;
-  }
-
-  String _token = '';
-  String get token => _token;
-  set token(String _value) {
-    _token = _value;
-    prefs.setString('ff_token', _value);
-  }
-
-  String _category = 'smartphones';
-  String get category => _category;
-  set category(String _value) {
-    _category = _value;
-  }
-
-  String _address = '';
-  String get address => _address;
-  set address(String _value) {
-    _address = _value;
-  }
-
-  String _encodedIdForAddress = '';
-  String get encodedIdForAddress => _encodedIdForAddress;
-  set encodedIdForAddress(String _value) {
-    _encodedIdForAddress = _value;
-  }
-
-  bool _selectedAddress = false;
-  bool get selectedAddress => _selectedAddress;
-  set selectedAddress(bool _value) {
-    _selectedAddress = _value;
+  set image(String value) {
+    _image = value;
   }
 
   String _drivingLicense = '';
   String get drivingLicense => _drivingLicense;
-  set drivingLicense(String _value) {
-    _drivingLicense = _value;
+  set drivingLicense(String value) {
+    _drivingLicense = value;
   }
-}
 
-LatLng? _latLngFromString(String? val) {
-  if (val == null) {
-    return null;
+  String _token = '';
+  String get token => _token;
+  set token(String value) {
+    _token = value;
+    prefs.setString('ff_token', value);
   }
-  final split = val.split(',');
-  final lat = double.parse(split.first);
-  final lng = double.parse(split.last);
-  return LatLng(lat, lng);
+
+  String _category = 'smartphones';
+  String get category => _category;
+  set category(String value) {
+    _category = value;
+  }
+
+  String _address = '';
+  String get address => _address;
+  set address(String value) {
+    _address = value;
+  }
+
+  String _encodedIdForAddress = '';
+  String get encodedIdForAddress => _encodedIdForAddress;
+  set encodedIdForAddress(String value) {
+    _encodedIdForAddress = value;
+  }
+
+  bool _selectedAddress = false;
+  bool get selectedAddress => _selectedAddress;
+  set selectedAddress(bool value) {
+    _selectedAddress = value;
+  }
+
+  List<dynamic> _products2 = [];
+  List<dynamic> get products2 => _products2;
+  set products2(List<dynamic> value) {
+    _products2 = value;
+  }
+
+  void addToProducts2(dynamic value) {
+    products2.add(value);
+  }
+
+  void removeFromProducts2(dynamic value) {
+    products2.remove(value);
+  }
+
+  void removeAtIndexFromProducts2(int index) {
+    products2.removeAt(index);
+  }
+
+  void updateProducts2AtIndex(
+    int index,
+    dynamic Function(dynamic) updateFn,
+  ) {
+    products2[index] = updateFn(_products2[index]);
+  }
+
+  void insertAtIndexInProducts2(int index, dynamic value) {
+    products2.insert(index, value);
+  }
 }
 
 void _safeInit(Function() initializeField) {

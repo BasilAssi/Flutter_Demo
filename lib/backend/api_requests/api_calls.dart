@@ -1,5 +1,8 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import '../schema/structs/index.dart';
+
+import 'package:flutter/foundation.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
@@ -32,6 +35,8 @@ class LoginCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
   }
 
@@ -92,6 +97,8 @@ class LoginLogisticsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
   }
 }
@@ -108,24 +115,26 @@ class ProductsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
   }
 
-  static dynamic products(dynamic response) => getJsonField(
+  static List? products(dynamic response) => getJsonField(
         response,
         r'''$.products''',
         true,
-      );
-  static dynamic title(dynamic response) => getJsonField(
+      ) as List?;
+  static List? title(dynamic response) => getJsonField(
         response,
         r'''$.products[:].title''',
         true,
-      );
-  static dynamic description(dynamic response) => getJsonField(
+      ) as List?;
+  static List? description(dynamic response) => getJsonField(
         response,
         r'''$.products[:].description''',
         true,
-      );
+      ) as List?;
 }
 
 class ProductListingCall {
@@ -142,14 +151,16 @@ class ProductListingCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
   }
 
-  static dynamic productsCat(dynamic response) => getJsonField(
+  static List? productsCat(dynamic response) => getJsonField(
         response,
         r'''$.products''',
         true,
-      );
+      ) as List?;
 }
 
 class AddressCall {
@@ -175,19 +186,21 @@ class AddressCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
   }
 
-  static dynamic namesOfAddress(dynamic response) => getJsonField(
+  static List? namesOfAddress(dynamic response) => getJsonField(
         response,
         r'''$.records[:].name''',
         true,
-      );
-  static dynamic encodedidForAddress(dynamic response) => getJsonField(
+      ) as List?;
+  static List? encodedidForAddress(dynamic response) => getJsonField(
         response,
         r'''$.records[:].encodedId''',
         true,
-      );
+      ) as List?;
 }
 
 class ProductAPICall {
@@ -204,14 +217,25 @@ class ProductAPICall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
     );
   }
 
-  static dynamic productData(dynamic response) => getJsonField(
+  static List? productData(dynamic response) => getJsonField(
         response,
         r'''$.products''',
         true,
-      );
+      ) as List?;
+  static List<String>? image(dynamic response) => (getJsonField(
+        response,
+        r'''$.products[:].images[0]''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class ApiPagingParams {
@@ -230,11 +254,18 @@ class ApiPagingParams {
       'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
 }
 
+String _toEncodable(dynamic item) {
+  return item;
+}
+
 String _serializeList(List? list) {
   list ??= <String>[];
   try {
-    return json.encode(list);
+    return json.encode(list, toEncodable: _toEncodable);
   } catch (_) {
+    if (kDebugMode) {
+      print("List serialization failed. Returning empty list.");
+    }
     return '[]';
   }
 }
@@ -242,8 +273,11 @@ String _serializeList(List? list) {
 String _serializeJson(dynamic jsonVar, [bool isList = false]) {
   jsonVar ??= (isList ? [] : {});
   try {
-    return json.encode(jsonVar);
+    return json.encode(jsonVar, toEncodable: _toEncodable);
   } catch (_) {
+    if (kDebugMode) {
+      print("Json serialization failed. Returning empty json.");
+    }
     return isList ? '[]' : '{}';
   }
 }

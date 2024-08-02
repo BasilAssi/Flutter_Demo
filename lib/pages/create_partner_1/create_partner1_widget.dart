@@ -3,17 +3,16 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'create_partner1_model.dart';
 export 'create_partner1_model.dart';
 
 class CreatePartner1Widget extends StatefulWidget {
-  const CreatePartner1Widget({Key? key}) : super(key: key);
+  const CreatePartner1Widget({super.key});
 
   @override
-  _CreatePartner1WidgetState createState() => _CreatePartner1WidgetState();
+  State<CreatePartner1Widget> createState() => _CreatePartner1WidgetState();
 }
 
 class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
@@ -26,15 +25,19 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
     super.initState();
     _model = createModel(context, () => CreatePartner1Model());
 
-    _model.firstNameController ??= TextEditingController();
+    _model.firstNameTextController ??= TextEditingController();
     _model.firstNameFocusNode ??= FocusNode();
-    _model.lastNameController ??= TextEditingController();
+
+    _model.lastNameTextController ??= TextEditingController();
     _model.lastNameFocusNode ??= FocusNode();
-    _model.mobileNumberController ??= TextEditingController();
+
+    _model.mobileNumberTextController ??= TextEditingController();
     _model.mobileNumberFocusNode ??= FocusNode();
-    _model.emailAddressController ??= TextEditingController();
+
+    _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
-    _model.iDNumberController ??= TextEditingController();
+
+    _model.iDNumberTextController ??= TextEditingController();
     _model.iDNumberFocusNode ??= FocusNode();
   }
 
@@ -47,17 +50,6 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -78,7 +70,7 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  alignment: AlignmentDirectional(0.00, -1.00),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -97,9 +89,9 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                               topRight: Radius.circular(0.0),
                             ),
                           ),
-                          alignment: AlignmentDirectional(-1.00, 0.00),
+                          alignment: AlignmentDirectional(-1.0, 0.0),
                           child: Align(
-                            alignment: AlignmentDirectional(0.00, 0.00),
+                            alignment: AlignmentDirectional(0.0, 0.0),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(40.0),
                               child: Image.asset(
@@ -112,7 +104,7 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 32.0, 50.0, 32.0, 32.0),
@@ -124,8 +116,12 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                   FFLocalizations.of(context).getText(
                                     'h7lte5td' /* Become a Partner */,
                                   ),
-                                  style:
-                                      FlutterFlowTheme.of(context).displaySmall,
+                                  style: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .override(
+                                        fontFamily: 'Outfit',
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -135,7 +131,11 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                       'bmf77c3g' /* Let's get started by filling o... */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .labelMedium,
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                 ),
                                 Padding(
@@ -144,7 +144,8 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                   child: Container(
                                     width: 370.0,
                                     child: TextFormField(
-                                      controller: _model.firstNameController,
+                                      controller:
+                                          _model.firstNameTextController,
                                       focusNode: _model.firstNameFocusNode,
                                       autofocus: true,
                                       obscureText: false,
@@ -154,7 +155,11 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                           'v1xprqyc' /* First Name */,
                                         ),
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
@@ -199,9 +204,13 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                         ),
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
                                       validator: _model
-                                          .firstNameControllerValidator
+                                          .firstNameTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -212,7 +221,7 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                   child: Container(
                                     width: 370.0,
                                     child: TextFormField(
-                                      controller: _model.lastNameController,
+                                      controller: _model.lastNameTextController,
                                       focusNode: _model.lastNameFocusNode,
                                       autofocus: true,
                                       autofillHints: [AutofillHints.name],
@@ -223,7 +232,11 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                           '6cv1qeus' /* Last Name */,
                                         ),
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
@@ -268,9 +281,13 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                         ),
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
                                       validator: _model
-                                          .lastNameControllerValidator
+                                          .lastNameTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -281,7 +298,8 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                   child: Container(
                                     width: 370.0,
                                     child: TextFormField(
-                                      controller: _model.mobileNumberController,
+                                      controller:
+                                          _model.mobileNumberTextController,
                                       focusNode: _model.mobileNumberFocusNode,
                                       autofocus: true,
                                       autofillHints: [AutofillHints.email],
@@ -292,7 +310,11 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                           'yyv949km' /* Mobile Number */,
                                         ),
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
@@ -338,10 +360,14 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                         ),
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
                                       keyboardType: TextInputType.emailAddress,
                                       validator: _model
-                                          .mobileNumberControllerValidator
+                                          .mobileNumberTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -352,7 +378,8 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                   child: Container(
                                     width: 370.0,
                                     child: TextFormField(
-                                      controller: _model.emailAddressController,
+                                      controller:
+                                          _model.emailAddressTextController,
                                       focusNode: _model.emailAddressFocusNode,
                                       autofocus: true,
                                       obscureText: false,
@@ -362,7 +389,11 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                           'fh83jzdt' /* Email */,
                                         ),
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
@@ -407,9 +438,13 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                         ),
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
                                       validator: _model
-                                          .emailAddressControllerValidator
+                                          .emailAddressTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -420,7 +455,7 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                   child: Container(
                                     width: 370.0,
                                     child: TextFormField(
-                                      controller: _model.iDNumberController,
+                                      controller: _model.iDNumberTextController,
                                       focusNode: _model.iDNumberFocusNode,
                                       autofocus: true,
                                       obscureText: false,
@@ -430,7 +465,11 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                           'gsxjilla' /* ID Number */,
                                         ),
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
@@ -476,10 +515,14 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                         ),
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
                                       keyboardType: TextInputType.number,
                                       validator: _model
-                                          .iDNumberControllerValidator
+                                          .iDNumberTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -521,6 +564,7 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: Colors.white,
+                                            letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
                                       borderSide: BorderSide(
@@ -548,8 +592,7 @@ class _CreatePartner1WidgetState extends State<CreatePartner1Widget> {
                 Expanded(
                   flex: 6,
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                    padding: EdgeInsets.all(16.0),
                     child: Container(
                       width: 100.0,
                       height: double.infinity,

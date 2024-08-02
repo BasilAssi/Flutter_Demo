@@ -9,7 +9,10 @@ export '/pages/create_partner_1/create_partner1_widget.dart'
 export '/pages/create_partner_2/create_partner2_widget.dart'
     show CreatePartner2Widget;
 export '/google_map/google_map_widget.dart' show GoogleMapWidget;
-export '/test_product/test_product_widget.dart' show TestProductWidget;
 export '/pages/create_partner_3/create_partner3_widget.dart'
     show CreatePartner3Widget;
 export '/dashboard5/dashboard5_widget.dart' show Dashboard5Widget;
+export '/place_pincker/place_pincker_widget.dart' show PlacePinckerWidget;
+export '/products_copy/products_copy_widget.dart' show ProductsCopyWidget;
+export '/products_copy_copy/products_copy_copy_widget.dart'
+    show ProductsCopyCopyWidget;

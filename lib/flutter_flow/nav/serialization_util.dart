@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:from_css_color/from_css_color.dart';
 
+import '/backend/schema/structs/index.dart';
+
 import '../../flutter_flow/lat_lng.dart';
 import '../../flutter_flow/place.dart';
 import '../../flutter_flow/uploaded_file.dart';
@@ -30,48 +32,53 @@ String uploadedFileToString(FFUploadedFile uploadedFile) =>
 
 String? serializeParam(
   dynamic param,
-  ParamType paramType, [
+  ParamType paramType, {
   bool isList = false,
-]) {
+}) {
   try {
     if (param == null) {
       return null;
     }
     if (isList) {
       final serializedValues = (param as Iterable)
-          .map((p) => serializeParam(p, paramType, false))
+          .map((p) => serializeParam(p, paramType, isList: false))
           .where((p) => p != null)
           .map((p) => p!)
           .toList();
       return json.encode(serializedValues);
     }
+    String? data;
     switch (paramType) {
       case ParamType.int:
-        return param.toString();
+        data = param.toString();
       case ParamType.double:
-        return param.toString();
+        data = param.toString();
       case ParamType.String:
-        return param;
+        data = param;
       case ParamType.bool:
-        return param ? 'true' : 'false';
+        data = param ? 'true' : 'false';
       case ParamType.DateTime:
-        return (param as DateTime).millisecondsSinceEpoch.toString();
+        data = (param as DateTime).millisecondsSinceEpoch.toString();
       case ParamType.DateTimeRange:
-        return dateTimeRangeToString(param as DateTimeRange);
+        data = dateTimeRangeToString(param as DateTimeRange);
       case ParamType.LatLng:
-        return (param as LatLng).serialize();
+        data = (param as LatLng).serialize();
       case ParamType.Color:
-        return (param as Color).toCssString();
+        data = (param as Color).toCssString();
       case ParamType.FFPlace:
-        return placeToString(param as FFPlace);
+        data = placeToString(param as FFPlace);
       case ParamType.FFUploadedFile:
-        return uploadedFileToString(param as FFUploadedFile);
+        data = uploadedFileToString(param as FFUploadedFile);
       case ParamType.JSON:
-        return json.encode(param);
+        data = json.encode(param);
+
+      case ParamType.DataStruct:
+        data = param is BaseStruct ? param.serialize() : null;
 
       default:
-        return null;
+        data = null;
     }
+    return data;
   } catch (e) {
     print('Error serializing parameter: $e');
     return null;
@@ -93,9 +100,9 @@ DateTimeRange? dateTimeRangeFromString(String dateTimeRangeStr) {
   );
 }
 
-LatLng? latLngFromString(String latLngStr) {
-  final pieces = latLngStr.split(',');
-  if (pieces.length != 2) {
+LatLng? latLngFromString(String? latLngStr) {
+  final pieces = latLngStr?.split(',');
+  if (pieces == null || pieces.length != 2) {
     return null;
   }
   return LatLng(
@@ -143,13 +150,16 @@ enum ParamType {
   FFPlace,
   FFUploadedFile,
   JSON,
+
+  DataStruct,
 }
 
 dynamic deserializeParam<T>(
   String? param,
   ParamType paramType,
-  bool isList,
-) {
+  bool isList, {
+  StructBuilder<T>? structBuilder,
+}) {
   try {
     if (param == null) {
       return null;
@@ -162,7 +172,12 @@ dynamic deserializeParam<T>(
       return paramValues
           .where((p) => p is String)
           .map((p) => p as String)
-          .map((p) => deserializeParam<T>(p, paramType, false))
+          .map((p) => deserializeParam<T>(
+                p,
+                paramType,
+                false,
+                structBuilder: structBuilder,
+              ))
           .where((p) => p != null)
           .map((p) => p! as T)
           .toList();
@@ -193,6 +208,10 @@ dynamic deserializeParam<T>(
         return uploadedFileFromString(param);
       case ParamType.JSON:
         return json.decode(param);
+
+      case ParamType.DataStruct:
+        final data = json.decode(param) as Map<String, dynamic>? ?? {};
+        return structBuilder != null ? structBuilder(data) : null;
 
       default:
         return null;

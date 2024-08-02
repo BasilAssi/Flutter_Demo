@@ -1,40 +1,47 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_choice_chips.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'dart:math';
-import 'dart:async';
+import '/backend/schema/structs/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:provider/provider.dart';
-import 'products_listing_model.dart';
-export 'products_listing_model.dart';
+import 'products_copy_copy_model.dart';
+export 'products_copy_copy_model.dart';
 
-class ProductsListingWidget extends StatefulWidget {
-  const ProductsListingWidget({super.key});
+class ProductsCopyCopyWidget extends StatefulWidget {
+  const ProductsCopyCopyWidget({super.key});
 
   @override
-  State<ProductsListingWidget> createState() => _ProductsListingWidgetState();
+  State<ProductsCopyCopyWidget> createState() => _ProductsCopyCopyWidgetState();
 }
 
-class _ProductsListingWidgetState extends State<ProductsListingWidget>
+class _ProductsCopyCopyWidgetState extends State<ProductsCopyCopyWidget>
     with TickerProviderStateMixin {
-  late ProductsListingModel _model;
+  late ProductsCopyCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProductsListingModel());
+    _model = createModel(context, () => ProductsCopyCopyModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.apiResultqqh = await ProductsCall.call();
+
+      if ((_model.apiResultqqh?.succeeded ?? true)) {
+        FFAppState().products2 =
+            (_model.apiResultqqh?.jsonBody ?? '').toList().cast<dynamic>();
+        setState(() {});
+      }
+    });
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -77,7 +84,7 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              'cy7be90p' /* Search patients */,
+              'i98d6cmm' /* Search patients */,
             ),
             style: FlutterFlowTheme.of(context).headlineSmall.override(
                   fontFamily: 'Outfit',
@@ -103,7 +110,7 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                   decoration: InputDecoration(
                     isDense: false,
                     labelText: FFLocalizations.of(context).getText(
-                      'kfju0jg8' /* Search for patients... */,
+                      '6lorql8l' /* Search for products... */,
                     ),
                     labelStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
@@ -158,144 +165,47 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: 371.0,
-                        height: 100.0,
-                        decoration: BoxDecoration(),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              10.0, 10.0, 0.0, 0.0),
-                          child: FlutterFlowChoiceChips(
-                            options: [
-                              ChipData(
-                                  FFLocalizations.of(context).getText(
-                                    'byfr0oxe' /* smartphones */,
-                                  ),
-                                  Icons.phone_android),
-                              ChipData(
-                                  FFLocalizations.of(context).getText(
-                                    'kw82s3ga' /* laptops */,
-                                  ),
-                                  Icons.laptop),
-                              ChipData(
-                                  FFLocalizations.of(context).getText(
-                                    'f9kboeqa' /* fragrances */,
-                                  ),
-                                  Icons.twenty_two_mp_rounded),
-                              ChipData(
-                                  FFLocalizations.of(context).getText(
-                                    '8ljkjnb2' /* skincare */,
-                                  ),
-                                  FontAwesomeIcons.sign),
-                              ChipData(
-                                  FFLocalizations.of(context).getText(
-                                    'prqwa57i' /* groceries */,
-                                  ),
-                                  Icons.shopping_cart_outlined)
-                            ],
-                            onChanged: (val) => setState(() =>
-                                _model.choiceChipsValue = val?.firstOrNull),
-                            selectedChipStyle: ChipStyle(
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).secondary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                              iconColor:
-                                  FlutterFlowTheme.of(context).primaryText,
-                              iconSize: 18.0,
-                              elevation: 4.0,
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            unselectedChipStyle: ChipStyle(
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).alternate,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                              iconColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
-                              iconSize: 18.0,
-                              elevation: 0.0,
-                              borderRadius: BorderRadius.circular(16.0),
-                            ),
-                            chipSpacing: 12.0,
-                            rowSpacing: 12.0,
-                            multiselect: false,
-                            alignment: WrapAlignment.start,
-                            controller: _model.choiceChipsValueController ??=
-                                FormFieldController<List<String>>(
-                              [],
-                            ),
-                            wrapped: true,
-                          ),
-                        ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
+                    child: Text(
+                      FFLocalizations.of(context).getText(
+                        'kjcl20ot' /* products matching search */,
                       ),
-                    ],
+                      style: FlutterFlowTheme.of(context).labelMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(4.0, 12.0, 16.0, 0.0),
+                    child: Text(
+                      FFLocalizations.of(context).getText(
+                        'gqjb00lv' /* 24 */,
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            letterSpacing: 0.0,
+                          ),
+                    ),
                   ),
                 ],
               ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 0.0),
-                  child: RefreshIndicator(
-                    onRefresh: () async {
-                      setState(
-                          () => _model.listViewPagingController?.refresh());
-                      await _model.waitForOnePageForListView();
-                    },
-                    child: PagedListView<ApiPagingParams, dynamic>(
-                      pagingController: _model.setListViewController(
-                        (nextPageMarker) => ProductListingCall.call(
-                          cat: FFAppState().category,
-                        ),
-                      ),
-                      padding: EdgeInsets.zero,
-                      reverse: false,
-                      scrollDirection: Axis.vertical,
-                      builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                        // Customize what your widget looks like when it's loading the first page.
-                        firstPageProgressIndicatorBuilder: (_) => Center(
-                          child: SizedBox(
-                            width: 40.0,
-                            height: 40.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
-                            ),
-                          ),
-                        ),
-                        // Customize what your widget looks like when it's loading another page.
-                        newPageProgressIndicatorBuilder: (_) => Center(
-                          child: SizedBox(
-                            width: 40.0,
-                            height: 40.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
-                            ),
-                          ),
-                        ),
+                  child: Builder(
+                    builder: (context) {
+                      final product = FFAppState().products2.toList();
 
-                        itemBuilder: (context, _, eachProductIndex) {
-                          final eachProductItem = _model
-                              .listViewPagingController!
-                              .itemList![eachProductIndex];
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        scrollDirection: Axis.vertical,
+                        itemCount: product.length,
+                        itemBuilder: (context, productIndex) {
+                          final productItem = product[productIndex];
                           return Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 1.0),
@@ -328,10 +238,7 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                                           borderRadius:
                                               BorderRadius.circular(40.0),
                                           child: Image.network(
-                                            getJsonField(
-                                              eachProductItem,
-                                              r'''$.thumbnail''',
-                                            ).toString(),
+                                            'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60',
                                             width: 60.0,
                                             height: 60.0,
                                             fit: BoxFit.cover,
@@ -359,10 +266,11 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                                                                   0.0,
                                                                   0.0),
                                                       child: Text(
-                                                        getJsonField(
-                                                          eachProductItem,
-                                                          r'''$.title''',
-                                                        ).toString(),
+                                                        ProductsStruct
+                                                                .maybeFromMap(
+                                                                    productItem)!
+                                                            .hasName()
+                                                            .toString(),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -381,10 +289,11 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        getJsonField(
-                                                          eachProductItem,
-                                                          r'''$.rating''',
-                                                        ).toString(),
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          '3vp4rhxe' /* Hello World */,
+                                                        ),
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -446,10 +355,7 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                                           borderRadius:
                                               BorderRadius.circular(40.0),
                                           child: Image.network(
-                                            getJsonField(
-                                              eachProductItem,
-                                              r'''$.images[0]''',
-                                            ).toString(),
+                                            'https://picsum.photos/seed/727/600',
                                             width: 60.0,
                                             height: 60.0,
                                             fit: BoxFit.cover,
@@ -460,10 +366,13 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Text(
-                                            'Price: ${getJsonField(
-                                              eachProductItem,
-                                              r'''$.price''',
-                                            ).toString()}\$',
+                                            valueOrDefault<String>(
+                                              ProductsStruct.maybeFromMap(
+                                                      productItem)
+                                                  ?.hasPrice()
+                                                  ?.toString(),
+                                              '0',
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -480,8 +389,8 @@ class _ProductsListingWidgetState extends State<ProductsListingWidget>
                             ),
                           );
                         },
-                      ),
-                    ),
+                      );
+                    },
                   ),
                 ),
               ),

@@ -11,26 +11,26 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'products_model.dart';
-export 'products_model.dart';
+import 'products_copy_model.dart';
+export 'products_copy_model.dart';
 
-class ProductsWidget extends StatefulWidget {
-  const ProductsWidget({super.key});
+class ProductsCopyWidget extends StatefulWidget {
+  const ProductsCopyWidget({super.key});
 
   @override
-  State<ProductsWidget> createState() => _ProductsWidgetState();
+  State<ProductsCopyWidget> createState() => _ProductsCopyWidgetState();
 }
 
-class _ProductsWidgetState extends State<ProductsWidget>
+class _ProductsCopyWidgetState extends State<ProductsCopyWidget>
     with TickerProviderStateMixin {
-  late ProductsModel _model;
+  late ProductsCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProductsModel());
+    _model = createModel(context, () => ProductsCopyModel());
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -71,7 +71,7 @@ class _ProductsWidgetState extends State<ProductsWidget>
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              'tmrbcbbf' /* Search patients */,
+              'l93df8r7' /* Search patients */,
             ),
             style: FlutterFlowTheme.of(context).headlineSmall.override(
                   fontFamily: 'Outfit',
@@ -97,7 +97,7 @@ class _ProductsWidgetState extends State<ProductsWidget>
                   decoration: InputDecoration(
                     isDense: false,
                     labelText: FFLocalizations.of(context).getText(
-                      'u8x15t1f' /* Search for products... */,
+                      'qivv457l' /* Search for products... */,
                     ),
                     labelStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
@@ -157,7 +157,7 @@ class _ProductsWidgetState extends State<ProductsWidget>
                         EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        '6r6iu8sc' /* products matching search */,
+                        'ahoe7z19' /* products matching search */,
                       ),
                       style: FlutterFlowTheme.of(context).labelMedium.override(
                             fontFamily: 'Readex Pro',
@@ -170,7 +170,7 @@ class _ProductsWidgetState extends State<ProductsWidget>
                         EdgeInsetsDirectional.fromSTEB(4.0, 12.0, 16.0, 0.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        'g6zwy67k' /* 24 */,
+                        'aoeiu0f0' /* 24 */,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
@@ -276,8 +276,12 @@ class _ProductsWidgetState extends State<ProductsWidget>
                                                                       0.0,
                                                                       0.0),
                                                           child: Text(
-                                                            eachProdItem
-                                                                .toString(),
+                                                            (String var1) {
+                                                              return var1 ?? '';
+                                                            }(getJsonField(
+                                                              eachProdItem,
+                                                              r'''$.title''',
+                                                            ).toString()),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyLarge

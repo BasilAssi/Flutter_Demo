@@ -4,11 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -16,10 +16,10 @@ import 'dashboard5_model.dart';
 export 'dashboard5_model.dart';
 
 class Dashboard5Widget extends StatefulWidget {
-  const Dashboard5Widget({Key? key}) : super(key: key);
+  const Dashboard5Widget({super.key});
 
   @override
-  _Dashboard5WidgetState createState() => _Dashboard5WidgetState();
+  State<Dashboard5Widget> createState() => _Dashboard5WidgetState();
 }
 
 class _Dashboard5WidgetState extends State<Dashboard5Widget>
@@ -28,92 +28,93 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final animationsMap = {
-    'containerOnPageLoadAnimation4': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: Offset(0.0, 20.0),
-          end: Offset(0.0, 0.0),
-        ),
-        TiltEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: Offset(0.698, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation5': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: Offset(0.0, 20.0),
-          end: Offset(0.0, 0.0),
-        ),
-        TiltEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: Offset(0.698, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'containerOnPageLoadAnimation6': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: Offset(0.0, 20.0),
-          end: Offset(0.0, 0.0),
-        ),
-        TiltEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 300.ms,
-          begin: Offset(0.698, 0),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-  };
+  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => Dashboard5Model());
 
+    animationsMap.addAll({
+      'containerOnPageLoadAnimation4': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: Offset(0.0, 20.0),
+            end: Offset(0.0, 0.0),
+          ),
+          TiltEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: Offset(0.698, 0),
+            end: Offset(0, 0),
+          ),
+        ],
+      ),
+      'containerOnPageLoadAnimation5': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: Offset(0.0, 20.0),
+            end: Offset(0.0, 0.0),
+          ),
+          TiltEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: Offset(0.698, 0),
+            end: Offset(0, 0),
+          ),
+        ],
+      ),
+      'containerOnPageLoadAnimation6': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: Offset(0.0, 20.0),
+            end: Offset(0.0, 0.0),
+          ),
+          TiltEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 300.0.ms,
+            begin: Offset(0.698, 0),
+            end: Offset(0, 0),
+          ),
+        ],
+      ),
+    });
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -131,17 +132,6 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -156,7 +146,10 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
             FFLocalizations.of(context).getText(
               '7yypf44f' /* Dashboard */,
             ),
-            style: FlutterFlowTheme.of(context).headlineMedium,
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  letterSpacing: 0.0,
+                ),
           ),
           actions: [
             Padding(
@@ -198,7 +191,10 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                       BoxShadow(
                         blurRadius: 3.0,
                         color: Color(0x33000000),
-                        offset: Offset(0.0, 1.0),
+                        offset: Offset(
+                          0.0,
+                          1.0,
+                        ),
                       )
                     ],
                   ),
@@ -215,7 +211,12 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                             FFLocalizations.of(context).getText(
                               'j6xvroaf' /* Below is a summary of your day... */,
                             ),
-                            style: FlutterFlowTheme.of(context).labelMedium,
+                            style: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
                           ),
                         ),
                         Expanded(
@@ -243,8 +244,7 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 12.0, 12.0, 12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -255,7 +255,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                               '5kzyee4e' /* 16 */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .displaySmall,
+                                                .displaySmall
+                                                .override(
+                                                  fontFamily: 'Outfit',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
                                           Padding(
                                             padding:
@@ -268,7 +272,12 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelMedium,
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
                                           ),
                                         ],
@@ -291,8 +300,7 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 12.0, 12.0, 12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -309,6 +317,7 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .tertiary,
+                                                  letterSpacing: 0.0,
                                                 ),
                                           ),
                                           Padding(
@@ -322,7 +331,12 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelMedium,
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
                                           ),
                                         ],
@@ -345,8 +359,7 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                       ),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 12.0, 12.0, 12.0),
+                                      padding: EdgeInsets.all(12.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         crossAxisAlignment:
@@ -363,6 +376,7 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondary,
+                                                  letterSpacing: 0.0,
                                                 ),
                                           ),
                                           Padding(
@@ -376,7 +390,12 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelMedium,
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                             ),
                                           ),
                                         ],
@@ -403,7 +422,10 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                         BoxShadow(
                           blurRadius: 3.0,
                           color: Color(0x33000000),
-                          offset: Offset(0.0, 1.0),
+                          offset: Offset(
+                            0.0,
+                            1.0,
+                          ),
                         )
                       ],
                       borderRadius: BorderRadius.circular(8.0),
@@ -434,7 +456,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                           'zscfj615' /* Current Route */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .headlineSmall,
+                                            .headlineSmall
+                                            .override(
+                                              fontFamily: 'Outfit',
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -444,7 +470,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                             't2fnq4t7' /* An overview of your route. */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .labelMedium,
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
                                       ),
                                     ],
@@ -477,7 +507,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                           'z60f0930' /* 15/26 */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .displaySmall,
+                                            .displaySmall
+                                            .override(
+                                              fontFamily: 'Outfit',
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -487,7 +521,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                             '90kh7kv8' /* Route progress */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .labelMedium,
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
                                       ),
                                     ],
@@ -508,7 +546,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                           '07hsldpw' /* 12 */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .displaySmall,
+                                            .displaySmall
+                                            .override(
+                                              fontFamily: 'Outfit',
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -518,7 +560,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                             'gy5768el' /* Tasks to be completed */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .labelMedium,
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
                                       ),
                                     ],
@@ -544,7 +590,10 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                         BoxShadow(
                           blurRadius: 3.0,
                           color: Color(0x33000000),
-                          offset: Offset(0.0, 1.0),
+                          offset: Offset(
+                            0.0,
+                            1.0,
+                          ),
                         )
                       ],
                       borderRadius: BorderRadius.circular(8.0),
@@ -571,7 +620,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                         'exdmzb51' /* Current Tasks */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .headlineSmall,
+                                          .headlineSmall
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            letterSpacing: 0.0,
+                                          ),
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -581,7 +634,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                           '7eh0d6uk' /* A summary of your tasks */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .labelMedium,
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
                                     ),
                                   ],
@@ -610,11 +667,14 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                       BoxShadow(
                                         blurRadius: 0.0,
                                         color: Color(0xFFE0E3E7),
-                                        offset: Offset(0.0, 1.0),
+                                        offset: Offset(
+                                          0.0,
+                                          1.0,
+                                        ),
                                       )
                                     ],
                                   ),
-                                  alignment: AlignmentDirectional(-1.00, 0.00),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 2.0, 0.0, 2.0),
@@ -657,10 +717,14 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                           .getText(
                                                         'zuuujsri' /* Task Type */,
                                                       ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmall,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodySmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
                                                     Icon(
                                                       Icons
@@ -684,7 +748,12 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                                   ),
                                                 ),
                                                 Padding(
@@ -711,7 +780,13 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .labelMedium,
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
                                                         ),
                                                       ),
                                                       Expanded(
@@ -723,7 +798,13 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyMedium,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
                                                         ),
                                                       ),
                                                       badges.Badge(
@@ -741,6 +822,8 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                                     'Readex Pro',
                                                                 color: Colors
                                                                     .white,
+                                                                letterSpacing:
+                                                                    0.0,
                                                               ),
                                                         ),
                                                         showBadge: true,
@@ -752,12 +835,7 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                                 .primary,
                                                         elevation: 4.0,
                                                         padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    8.0,
-                                                                    8.0,
-                                                                    8.0),
+                                                            EdgeInsets.all(8.0),
                                                         position:
                                                             badges.BadgePosition
                                                                 .topStart(),
@@ -788,6 +866,8 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
+                                                                  letterSpacing:
+                                                                      0.0,
                                                                 ),
                                                           ),
                                                         ),
@@ -813,7 +893,7 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                   ),
-                                  alignment: AlignmentDirectional(-1.00, 0.00),
+                                  alignment: AlignmentDirectional(-1.0, 0.0),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 2.0, 0.0, 2.0),
@@ -856,10 +936,14 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                           .getText(
                                                         'y3n2pmfp' /* Task Type */,
                                                       ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmall,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodySmall
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
                                                     Icon(
                                                       Icons
@@ -883,7 +967,12 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                                   ),
                                                 ),
                                                 Padding(
@@ -910,7 +999,13 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .labelMedium,
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
                                                         ),
                                                       ),
                                                       Expanded(
@@ -922,7 +1017,13 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .bodyMedium,
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
                                                         ),
                                                       ),
                                                       badges.Badge(
@@ -940,6 +1041,8 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                                     'Readex Pro',
                                                                 color: Colors
                                                                     .white,
+                                                                letterSpacing:
+                                                                    0.0,
                                                               ),
                                                         ),
                                                         showBadge: true,
@@ -951,12 +1054,7 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                                 .primary,
                                                         elevation: 4.0,
                                                         padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    8.0,
-                                                                    8.0,
-                                                                    8.0,
-                                                                    8.0),
+                                                            EdgeInsets.all(8.0),
                                                         position:
                                                             badges.BadgePosition
                                                                 .topStart(),
@@ -987,6 +1085,8 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primary,
+                                                                  letterSpacing:
+                                                                      0.0,
                                                                 ),
                                                           ),
                                                         ),
@@ -1022,7 +1122,10 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                         BoxShadow(
                           blurRadius: 3.0,
                           color: Color(0x33000000),
-                          offset: Offset(0.0, 1.0),
+                          offset: Offset(
+                            0.0,
+                            1.0,
+                          ),
                         )
                       ],
                       borderRadius: BorderRadius.circular(8.0),
@@ -1041,7 +1144,12 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                               FFLocalizations.of(context).getText(
                                 'px41pomy' /* Recent Activity */,
                               ),
-                              style: FlutterFlowTheme.of(context).headlineSmall,
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: 'Outfit',
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
                           ),
                           Padding(
@@ -1051,7 +1159,12 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                               FFLocalizations.of(context).getText(
                                 '2keq2k3b' /* Below is an overview of tasks ... */,
                               ),
-                              style: FlutterFlowTheme.of(context).labelMedium,
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    letterSpacing: 0.0,
+                                  ),
                             ),
                           ),
                           Padding(
@@ -1094,7 +1207,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                               '3oufcnof' /* Tasks */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -1134,7 +1251,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                               'udd6ei3v' /* Completed */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -1174,7 +1295,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                               '0454qh26' /* Launches */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
                                         ),
                                       ],
@@ -1194,11 +1319,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                 data: [
                                   FFLineChartData(
                                     xData: List.generate(
-                                        random_data.randomInteger(0, 0),
+                                        random_data.randomInteger(5, 5),
                                         (index) =>
                                             random_data.randomInteger(0, 10)),
                                     yData: List.generate(
-                                        random_data.randomInteger(0, 0),
+                                        random_data.randomInteger(5, 5),
                                         (index) =>
                                             random_data.randomInteger(0, 10)),
                                     settings: LineChartBarData(
@@ -1217,11 +1342,11 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                   ),
                                   FFLineChartData(
                                     xData: List.generate(
-                                        random_data.randomInteger(0, 0),
+                                        random_data.randomInteger(5, 5),
                                         (index) =>
                                             random_data.randomInteger(0, 200)),
                                     yData: List.generate(
-                                        random_data.randomInteger(0, 0),
+                                        random_data.randomInteger(5, 5),
                                         (index) =>
                                             random_data.randomInteger(0, 200)),
                                     settings: LineChartBarData(
@@ -1250,15 +1375,23 @@ class _Dashboard5WidgetState extends State<Dashboard5Widget>
                                   title: FFLocalizations.of(context).getText(
                                     '669r1thr' /* Last 30 Days */,
                                   ),
-                                  titleTextStyle:
-                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  titleTextStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
                                 yAxisLabelInfo: AxisLabelInfo(
                                   title: FFLocalizations.of(context).getText(
                                     'xuxjjwe6' /* Avg. Grade */,
                                   ),
-                                  titleTextStyle:
-                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  titleTextStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
                               ),
                             ),

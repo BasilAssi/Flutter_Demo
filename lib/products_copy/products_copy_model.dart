@@ -4,35 +4,31 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'test_product_widget.dart' show TestProductWidget;
-import 'package:easy_debounce/easy_debounce.dart';
+import 'dart:math';
+import '/backend/schema/structs/index.dart';
+import 'products_copy_widget.dart' show ProductsCopyWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class TestProductModel extends FlutterFlowModel<TestProductWidget> {
+class ProductsCopyModel extends FlutterFlowModel<ProductsCopyWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for searchProdcut widget.
-  FocusNode? searchProdcutFocusNode;
-  TextEditingController? searchProdcutController;
-  String? Function(BuildContext, String?)? searchProdcutControllerValidator;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
 
-  /// Initialization and disposal methods.
-
+  @override
   void initState(BuildContext context) {}
 
+  @override
   void dispose() {
     unfocusNode.dispose();
-    searchProdcutFocusNode?.dispose();
-    searchProdcutController?.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

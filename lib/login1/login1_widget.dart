@@ -6,7 +6,6 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
@@ -14,10 +13,10 @@ import 'login1_model.dart';
 export 'login1_model.dart';
 
 class Login1Widget extends StatefulWidget {
-  const Login1Widget({Key? key}) : super(key: key);
+  const Login1Widget({super.key});
 
   @override
-  _Login1WidgetState createState() => _Login1WidgetState();
+  State<Login1Widget> createState() => _Login1WidgetState();
 }
 
 class _Login1WidgetState extends State<Login1Widget> {
@@ -35,9 +34,10 @@ class _Login1WidgetState extends State<Login1Widget> {
       _model.info = await actions.deviceInfo();
     });
 
-    _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
-    _model.passwordController ??= TextEditingController();
+
+    _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
   }
 
@@ -50,17 +50,6 @@ class _Login1WidgetState extends State<Login1Widget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -68,6 +57,9 @@ class _Login1WidgetState extends State<Login1Widget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        drawer: Drawer(
+          elevation: 16.0,
+        ),
         body: SafeArea(
           top: true,
           child: Row(
@@ -81,7 +73,7 @@ class _Login1WidgetState extends State<Login1Widget> {
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  alignment: AlignmentDirectional(0.00, -1.00),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -100,23 +92,36 @@ class _Login1WidgetState extends State<Login1Widget> {
                               topRight: Radius.circular(0.0),
                             ),
                           ),
-                          alignment: AlignmentDirectional(-1.00, 0.00),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 32.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'brp26aqi' /* brand.ai */,
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                scaffoldKey.currentState!.openDrawer();
+                              },
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  'brp26aqi' /* brand.ai */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .displaySmall
+                                    .override(
+                                      fontFamily: 'Outfit',
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
-                              style: FlutterFlowTheme.of(context).displaySmall,
                             ),
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(0.00, 0.00),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                32.0, 32.0, 32.0, 32.0),
+                            padding: EdgeInsets.all(32.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,8 +130,12 @@ class _Login1WidgetState extends State<Login1Widget> {
                                   FFLocalizations.of(context).getText(
                                     '46cq0xja' /* Welcome Back */,
                                   ),
-                                  style:
-                                      FlutterFlowTheme.of(context).displaySmall,
+                                  style: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .override(
+                                        fontFamily: 'Outfit',
+                                        letterSpacing: 0.0,
+                                      ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -136,7 +145,11 @@ class _Login1WidgetState extends State<Login1Widget> {
                                       '5q0o0fud' /* Let's get started by filling o... */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .labelMedium,
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                 ),
                                 Padding(
@@ -145,7 +158,8 @@ class _Login1WidgetState extends State<Login1Widget> {
                                   child: Container(
                                     width: 370.0,
                                     child: TextFormField(
-                                      controller: _model.emailAddressController,
+                                      controller:
+                                          _model.emailAddressTextController,
                                       focusNode: _model.emailAddressFocusNode,
                                       autofocus: true,
                                       autofillHints: [AutofillHints.email],
@@ -156,7 +170,11 @@ class _Login1WidgetState extends State<Login1Widget> {
                                           '04i3xjus' /* Email */,
                                         ),
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
@@ -198,10 +216,14 @@ class _Login1WidgetState extends State<Login1Widget> {
                                             .primaryBackground,
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
                                       keyboardType: TextInputType.emailAddress,
                                       validator: _model
-                                          .emailAddressControllerValidator
+                                          .emailAddressTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -212,7 +234,7 @@ class _Login1WidgetState extends State<Login1Widget> {
                                   child: Container(
                                     width: 370.0,
                                     child: TextFormField(
-                                      controller: _model.passwordController,
+                                      controller: _model.passwordTextController,
                                       focusNode: _model.passwordFocusNode,
                                       autofocus: true,
                                       autofillHints: [AutofillHints.password],
@@ -223,7 +245,11 @@ class _Login1WidgetState extends State<Login1Widget> {
                                           'vs0hlqs1' /* Password */,
                                         ),
                                         labelStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium,
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                             color: FlutterFlowTheme.of(context)
@@ -281,9 +307,13 @@ class _Login1WidgetState extends State<Login1Widget> {
                                         ),
                                       ),
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
                                       validator: _model
-                                          .passwordControllerValidator
+                                          .passwordTextControllerValidator
                                           .asValidator(context),
                                     ),
                                   ),
@@ -295,35 +325,34 @@ class _Login1WidgetState extends State<Login1Widget> {
                                     onPressed: () async {
                                       _model.apiLoginResult =
                                           await LoginCall.call(
-                                        username:
-                                            _model.emailAddressController.text,
+                                        username: _model
+                                            .emailAddressTextController.text,
                                         password:
-                                            _model.passwordController.text,
+                                            _model.passwordTextController.text,
                                       );
+
                                       if ((_model.apiLoginResult?.succeeded ??
                                           true)) {
-                                        setState(() {
-                                          FFAppState().token = LoginCall.token(
-                                            (_model.apiLoginResult?.jsonBody ??
-                                                ''),
-                                          ).toString();
-                                          FFAppState().username =
-                                              LoginCall.username(
-                                            (_model.apiLoginResult?.jsonBody ??
-                                                ''),
-                                          ).toString();
-                                          FFAppState().image = LoginCall.image(
-                                            (_model.apiLoginResult?.jsonBody ??
-                                                ''),
-                                          );
-                                          FFAppState().gender =
-                                              LoginCall.gender(
-                                            (_model.apiLoginResult?.jsonBody ??
-                                                ''),
-                                          ).toString();
-                                          FFAppState().category =
-                                              _model.info!.toString();
-                                        });
+                                        FFAppState().token = LoginCall.token(
+                                          (_model.apiLoginResult?.jsonBody ??
+                                              ''),
+                                        ).toString();
+                                        FFAppState().username =
+                                            LoginCall.username(
+                                          (_model.apiLoginResult?.jsonBody ??
+                                              ''),
+                                        ).toString();
+                                        FFAppState().image = LoginCall.image(
+                                          (_model.apiLoginResult?.jsonBody ??
+                                              ''),
+                                        ).toString();
+                                        FFAppState().gender = LoginCall.gender(
+                                          (_model.apiLoginResult?.jsonBody ??
+                                              ''),
+                                        ).toString();
+                                        FFAppState().category =
+                                            _model.info!.toString();
+                                        setState(() {});
 
                                         context.pushNamed('Profile');
 
@@ -386,6 +415,7 @@ class _Login1WidgetState extends State<Login1Widget> {
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: Colors.white,
+                                            letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
                                       borderSide: BorderSide(
@@ -464,6 +494,7 @@ class _Login1WidgetState extends State<Login1Widget> {
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: Colors.white,
+                                            letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
                                       borderSide: BorderSide(
@@ -499,6 +530,7 @@ class _Login1WidgetState extends State<Login1Widget> {
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: Colors.white,
+                                            letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
                                       borderSide: BorderSide(
@@ -534,6 +566,7 @@ class _Login1WidgetState extends State<Login1Widget> {
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: Colors.white,
+                                            letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
                                       borderSide: BorderSide(
@@ -569,6 +602,7 @@ class _Login1WidgetState extends State<Login1Widget> {
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: Colors.white,
+                                            letterSpacing: 0.0,
                                           ),
                                       elevation: 3.0,
                                       borderSide: BorderSide(
@@ -585,8 +619,8 @@ class _Login1WidgetState extends State<Login1Widget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 12.0, 0.0, 12.0),
                                   child: RichText(
-                                    textScaleFactor:
-                                        MediaQuery.of(context).textScaleFactor,
+                                    textScaler:
+                                        MediaQuery.of(context).textScaler,
                                     text: TextSpan(
                                       children: [
                                         TextSpan(
@@ -608,12 +642,17 @@ class _Login1WidgetState extends State<Login1Widget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                         )
                                       ],
                                       style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
                                     ),
                                   ),
                                 ),
@@ -634,8 +673,7 @@ class _Login1WidgetState extends State<Login1Widget> {
                 Expanded(
                   flex: 6,
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                    padding: EdgeInsets.all(16.0),
                     child: Container(
                       width: 100.0,
                       height: double.infinity,

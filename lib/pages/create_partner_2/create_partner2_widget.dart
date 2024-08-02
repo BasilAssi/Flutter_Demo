@@ -6,7 +6,6 @@ import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,10 +13,10 @@ import 'create_partner2_model.dart';
 export 'create_partner2_model.dart';
 
 class CreatePartner2Widget extends StatefulWidget {
-  const CreatePartner2Widget({Key? key}) : super(key: key);
+  const CreatePartner2Widget({super.key});
 
   @override
-  _CreatePartner2WidgetState createState() => _CreatePartner2WidgetState();
+  State<CreatePartner2Widget> createState() => _CreatePartner2WidgetState();
 }
 
 class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
@@ -30,7 +29,7 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
     super.initState();
     _model = createModel(context, () => CreatePartner2Model());
 
-    _model.selectAddressTextFieldController ??= TextEditingController();
+    _model.selectAddressTextFieldTextController ??= TextEditingController();
     _model.selectAddressTextFieldFocusNode ??= FocusNode();
   }
 
@@ -43,17 +42,6 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -74,7 +62,7 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
-                  alignment: AlignmentDirectional(0.00, -1.00),
+                  alignment: AlignmentDirectional(0.0, -1.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -96,9 +84,9 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                   topRight: Radius.circular(0.0),
                                 ),
                               ),
-                              alignment: AlignmentDirectional(-1.00, 0.00),
+                              alignment: AlignmentDirectional(-1.0, 0.0),
                               child: Align(
-                                alignment: AlignmentDirectional(0.00, 0.00),
+                                alignment: AlignmentDirectional(0.0, 0.0),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(40.0),
                                   child: Image.asset(
@@ -111,7 +99,7 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                               ),
                             ),
                             Align(
-                              alignment: AlignmentDirectional(0.00, 0.00),
+                              alignment: AlignmentDirectional(0.0, 0.0),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     32.0, 50.0, 32.0, 32.0),
@@ -128,7 +116,11 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                           '8l1uzprw' /* Become a Partner */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .displaySmall,
+                                            .displaySmall
+                                            .override(
+                                              fontFamily: 'Outfit',
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -138,7 +130,11 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                             '3iq2adyr' /* Let's get started by filling o... */,
                                           ),
                                           style: FlutterFlowTheme.of(context)
-                                              .labelMedium,
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
                                       ),
                                       Padding(
@@ -148,23 +144,24 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                           width: 370.0,
                                           child: TextFormField(
                                             controller: _model
-                                                .selectAddressTextFieldController,
+                                                .selectAddressTextFieldTextController,
                                             focusNode: _model
                                                 .selectAddressTextFieldFocusNode,
                                             onChanged: (_) =>
                                                 EasyDebounce.debounce(
-                                              '_model.selectAddressTextFieldController',
+                                              '_model.selectAddressTextFieldTextController',
                                               Duration(milliseconds: 300),
                                               () async {
                                                 _model.apiResultAddress =
                                                     await AddressCall.call(
                                                   address: _model
-                                                      .selectAddressTextFieldController
+                                                      .selectAddressTextFieldTextController
                                                       .text,
                                                   randomNumber:
                                                       random_data.randomInteger(
                                                           0, 4294967295),
                                                 );
+
                                                 if ((_model.apiResultAddress
                                                         ?.succeeded ??
                                                     true)) {
@@ -204,7 +201,12 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                               ),
                                               labelStyle:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelMedium,
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        letterSpacing: 0.0,
+                                                      ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
@@ -259,9 +261,13 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                               ),
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  letterSpacing: 0.0,
+                                                ),
                                             validator: _model
-                                                .selectAddressTextFieldControllerValidator
+                                                .selectAddressTextFieldTextControllerValidator
                                                 .asValidator(context),
                                           ),
                                         ),
@@ -272,7 +278,7 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                         child: FutureBuilder<ApiCallResponse>(
                                           future: AddressCall.call(
                                             address: _model
-                                                .selectAddressTextFieldController
+                                                .selectAddressTextFieldTextController
                                                 .text,
                                             randomNumber: random_data
                                                 .randomInteger(0, 4294967295),
@@ -299,12 +305,14 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                             }
                                             final listViewAddressResponse =
                                                 snapshot.data!;
+
                                             return Builder(
                                               builder: (context) {
                                                 final listViewAddresRes =
                                                     listViewAddressResponse
                                                         .jsonBody
                                                         .toList();
+
                                                 return ListView.builder(
                                                   padding: EdgeInsets.zero,
                                                   shrinkWrap: true,
@@ -335,10 +343,9 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                                         highlightColor:
                                                             Colors.transparent,
                                                         onTap: () async {
-                                                          setState(() {
-                                                            FFAppState()
-                                                                .encodedIdForAddress = '';
-                                                          });
+                                                          FFAppState()
+                                                              .encodedIdForAddress = '';
+                                                          setState(() {});
                                                         },
                                                         child: Container(
                                                           width: 100.0,
@@ -370,7 +377,13 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                                                         .center,
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
                                                               ),
                                                               Text(
                                                                 getJsonField(
@@ -379,7 +392,13 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                                                                 ).toString(),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyMedium,
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
                                                               ),
                                                             ],
                                                           ),
@@ -433,14 +452,14 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                             height: 44.0,
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: EdgeInsets.all(0.0),
                             color: Colors.blue,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
                                   fontFamily: 'Readex Pro',
                                   color: Colors.white,
+                                  letterSpacing: 0.0,
                                 ),
                             elevation: 3.0,
                             borderSide: BorderSide(
@@ -463,8 +482,7 @@ class _CreatePartner2WidgetState extends State<CreatePartner2Widget> {
                 Expanded(
                   flex: 6,
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                    padding: EdgeInsets.all(16.0),
                     child: Container(
                       width: 100.0,
                       height: double.infinity,

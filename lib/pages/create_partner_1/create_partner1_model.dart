@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'create_partner1_widget.dart' show CreatePartner1Widget;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -14,48 +13,44 @@ class CreatePartner1Model extends FlutterFlowModel<CreatePartner1Widget> {
   final unfocusNode = FocusNode();
   // State field(s) for firstName widget.
   FocusNode? firstNameFocusNode;
-  TextEditingController? firstNameController;
-  String? Function(BuildContext, String?)? firstNameControllerValidator;
+  TextEditingController? firstNameTextController;
+  String? Function(BuildContext, String?)? firstNameTextControllerValidator;
   // State field(s) for LastName widget.
   FocusNode? lastNameFocusNode;
-  TextEditingController? lastNameController;
-  String? Function(BuildContext, String?)? lastNameControllerValidator;
+  TextEditingController? lastNameTextController;
+  String? Function(BuildContext, String?)? lastNameTextControllerValidator;
   // State field(s) for mobileNumber widget.
   FocusNode? mobileNumberFocusNode;
-  TextEditingController? mobileNumberController;
-  String? Function(BuildContext, String?)? mobileNumberControllerValidator;
+  TextEditingController? mobileNumberTextController;
+  String? Function(BuildContext, String?)? mobileNumberTextControllerValidator;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
-  TextEditingController? emailAddressController;
-  String? Function(BuildContext, String?)? emailAddressControllerValidator;
+  TextEditingController? emailAddressTextController;
+  String? Function(BuildContext, String?)? emailAddressTextControllerValidator;
   // State field(s) for IDNumber widget.
   FocusNode? iDNumberFocusNode;
-  TextEditingController? iDNumberController;
-  String? Function(BuildContext, String?)? iDNumberControllerValidator;
+  TextEditingController? iDNumberTextController;
+  String? Function(BuildContext, String?)? iDNumberTextControllerValidator;
 
-  /// Initialization and disposal methods.
-
+  @override
   void initState(BuildContext context) {}
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     firstNameFocusNode?.dispose();
-    firstNameController?.dispose();
+    firstNameTextController?.dispose();
 
     lastNameFocusNode?.dispose();
-    lastNameController?.dispose();
+    lastNameTextController?.dispose();
 
     mobileNumberFocusNode?.dispose();
-    mobileNumberController?.dispose();
+    mobileNumberTextController?.dispose();
 
     emailAddressFocusNode?.dispose();
-    emailAddressController?.dispose();
+    emailAddressTextController?.dispose();
 
     iDNumberFocusNode?.dispose();
-    iDNumberController?.dispose();
+    iDNumberTextController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }
